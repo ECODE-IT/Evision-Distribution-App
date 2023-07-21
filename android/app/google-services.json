@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "923422368723",
+    "project_id": "evision-distributor-app",
+    "storage_bucket": "evision-distributor-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923422368723:android:990754cd59832240eac526",
+        "android_client_info": {
+          "package_name": "com.ecodeit.evision_distribution_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "923422368723-1m6aa9ija3km1fqo7fgg753r53rjip5i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCk9UzMGSagKwuQYYvg5LoVm9a5k1uKhU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "923422368723-1m6aa9ija3km1fqo7fgg753r53rjip5i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "923422368723-ifuoa9a0r040cjpdmkbr5n5l7emmb1or.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ecodeit.evisionDistributionApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923422368723:android:63255e178a648f8beac526",
+        "android_client_info": {
+          "package_name": "com.ecodeit.test_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "923422368723-1m6aa9ija3km1fqo7fgg753r53rjip5i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCk9UzMGSagKwuQYYvg5LoVm9a5k1uKhU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "923422368723-1m6aa9ija3km1fqo7fgg753r53rjip5i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "923422368723-ifuoa9a0r040cjpdmkbr5n5l7emmb1or.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ecodeit.evisionDistributionApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
