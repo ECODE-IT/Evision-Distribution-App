@@ -18,7 +18,14 @@ class CustomizedAppBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              InkWell(child: const Icon(Icons.menu),onTap: () => {Scaffold.of(context).openDrawer()},),
+              Visibility(
+                visible: Navigator.of(context).canPop(),
+                child: InkWell(
+                  child: const Icon(Icons.arrow_back_rounded),
+                  onTap: () => {Navigator.pop(context)},
+
+                ),
+              ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.end,
