@@ -13,7 +13,7 @@ class CompanyConfigurationPage extends StatefulWidget {
 }
 
 class _CompanyConfigurationPageState extends State<CompanyConfigurationPage> {
-  bool verified = false;
+  bool verified = true;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class _CompanyConfigurationPageState extends State<CompanyConfigurationPage> {
             Row(
               children: [
                 const Text(
-                  'Company code',
+                  '    Company code',
                   style: TextStyle(fontSize: 10.0, color: Color(0xff797979)),
                 ),
                 const SizedBox(width: 10.0),
@@ -61,7 +61,7 @@ class _CompanyConfigurationPageState extends State<CompanyConfigurationPage> {
               child: AppButton(
                 displayText: 'Verify',
                 height: secondaryAppButtonHeight,
-                width: 141.0,
+                width: secondaryAppButtonWidth,
                 voidCallback: myMethod,
               ),
             ),
@@ -74,8 +74,10 @@ class _CompanyConfigurationPageState extends State<CompanyConfigurationPage> {
                       width: 80.0,
                       child: Text(
                         'Verification code',
-                        style:
-                            TextStyle(fontSize: 10.0, color: Color(0xff797979)),
+                        style: TextStyle(
+                          fontSize: 10.0,
+                          color: Color(0xff797979),
+                        ),
                       ),
                     ),
                     const SizedBox(width: 10.0),
@@ -86,16 +88,25 @@ class _CompanyConfigurationPageState extends State<CompanyConfigurationPage> {
                         decoration: AppTheme.mainTextInputDecoration,
                       ),
                     ),
-                    const Expanded(
-                      child: Text(
-                        'VERIFY',
-                        style: TextStyle(
-                          fontSize: 11.0,
-                          color: mainAppButtonBackgroundColor,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    )
+                    Expanded(
+                      child: verified == true
+                          ? const Text(
+                              'Verification success!',
+                              style: TextStyle(
+                                fontSize: 9.0,
+                                color: mainAppButtonBackgroundColor,
+                              ),
+                              textAlign: TextAlign.center,
+                            )
+                          : const Text(
+                              'VERIFY',
+                              style: TextStyle(
+                                fontSize: 11.0,
+                                color: mainAppButtonBackgroundColor,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 5.0),
@@ -110,22 +121,84 @@ class _CompanyConfigurationPageState extends State<CompanyConfigurationPage> {
                       width: displayWidth(context) * 0.3,
                       child: const Text(
                         'Enter the 5 digit code',
-                        style:
-                            TextStyle(fontSize: 8.0, color: Color(0xff797979)),
+                        style: TextStyle(
+                          fontSize: 8.0,
+                          color: Color(0xff797979),
+                        ),
                         textAlign: TextAlign.center,
                       ),
                     ),
                   ],
                 ),
+                const SizedBox(height: 20.0),
+                verified == true
+                    ? Column(
+                        children: [
+                          const Divider(
+                            color: mainAppButtonBackgroundColor,
+                            height: 1.0,
+                            thickness: 0.7,
+                          ),
+                          const SizedBox(height: 25.0),
+                          Row(
+                            children: [
+                              SizedBox(
+                                width: displayWidth(context) * 0.2,
+                                child: const Text(
+                                  'Email',
+                                  style: TextStyle(
+                                    fontSize: 10.0,
+                                    color: Color(0xff797979),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 10.0),
+                              SizedBox(
+                                height: 23.0,
+                                width: displayWidth(context) * 0.5,
+                                child: TextField(
+                                  decoration: AppTheme.mainTextInputDecoration,
+                                ),
+                              )
+                            ],
+                          ),
+                          const SizedBox(height: 15.0),
+                          Row(
+                            children: [
+                              SizedBox(
+                                width: displayWidth(context) * 0.2,
+                                child: const Text(
+                                  'Passwod',
+                                  style: TextStyle(
+                                    fontSize: 10.0,
+                                    color: Color(0xff797979),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 10.0),
+                              SizedBox(
+                                height: 23.0,
+                                width: displayWidth(context) * 0.5,
+                                child: TextField(
+                                  decoration: AppTheme.mainTextInputDecoration,
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
+                      )
+                    : const SizedBox()
               ],
             ),
           ],
         ),
       ),
-      const AppButton(
+      AppButton(
         displayText: 'Submit',
         height: mainAppButtonHeight,
+        width: mainAppButtonWidth,
         route: '/company_configuration',
+        color: verified == true ? null : const Color(0xff86C8B0),
       ),
     );
   }

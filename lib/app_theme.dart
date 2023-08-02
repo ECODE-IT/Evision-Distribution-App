@@ -7,7 +7,10 @@ const Color mainAppButtonBackgroundColor = Color(0xff1ED291);
 const Color secondaryTextColor = Color(0xff797979);
 
 const double mainAppButtonHeight = 37.0;
+const double mainAppButtonWidth = 171.0;
+
 const double secondaryAppButtonHeight = 25.0;
+const double secondaryAppButtonWidth = 141.0;
 
 class AppTheme {
   static ThemeData lightTheme = ThemeData(

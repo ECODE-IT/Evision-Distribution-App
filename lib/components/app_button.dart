@@ -7,6 +7,7 @@ class AppButton extends StatelessWidget {
   final double height;
   final double? width;
   final VoidCallback? voidCallback;
+  final Color? color;
 
   const AppButton(
       {this.route,
@@ -14,6 +15,7 @@ class AppButton extends StatelessWidget {
       required this.height,
       this.width,
       this.voidCallback,
+      this.color,
       Key? key})
       : super(key: key);
 
@@ -23,7 +25,11 @@ class AppButton extends StatelessWidget {
       height: height,
       width: width,
       child: FilledButton(
-        style: AppTheme.appButtonStyle,
+        style: color == null
+            ? AppTheme.appButtonStyle
+            : AppTheme.appButtonStyle.copyWith(
+                backgroundColor: MaterialStatePropertyAll(color),
+              ),
         onPressed: () {
           if (route != null) {
             Navigator.pushNamed(context, route!);

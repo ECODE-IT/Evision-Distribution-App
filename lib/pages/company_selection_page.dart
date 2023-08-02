@@ -62,6 +62,7 @@ class CompanySelectionPage extends StatelessWidget {
       const AppButton(
         displayText: 'Start Configuration',
         height: mainAppButtonHeight,
+        width: mainAppButtonWidth,
         route: '/company_configuration',
       ),
     );
