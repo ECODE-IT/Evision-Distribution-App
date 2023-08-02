@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:evision_distribution_app/app_theme.dart';
 import 'package:evision_distribution_app/pages/company_page.dart';
+import 'package:evision_distribution_app/pages/company_selection_page.dart';
 import 'package:evision_distribution_app/pages/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/company': (context) => const CompanyPage(),
       },
-      home: const HomePage(),
+      home: const CompanySelectionPage(),
     );
   }
 }
