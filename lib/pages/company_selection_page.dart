@@ -51,6 +51,13 @@ class CompanySelectionPage extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(11.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        blurRadius: 13,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
                   ),
                   child: ListView.builder(
                     padding: const EdgeInsets.only(top: 5.0),
