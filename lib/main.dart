@@ -44,6 +44,7 @@ class MyApp extends StatelessWidget {
         '/company': (context) => const CompanyPage(),
         '/company_configuration': (context) => const CompanyConfigurationPage(),
         '/login': (context) => const LoginPage(),
+        '/company_selection': (context) => const CompanySelectionPage()
       },
       home: const CompanySelectionPage(),
     );
