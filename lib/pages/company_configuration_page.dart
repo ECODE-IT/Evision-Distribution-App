@@ -168,7 +168,7 @@ class _CompanyConfigurationPageState extends State<CompanyConfigurationPage> {
                               SizedBox(
                                 width: displayWidth(context) * 0.2,
                                 child: const Text(
-                                  'Passwod',
+                                  'Password',
                                   style: TextStyle(
                                     fontSize: 10.0,
                                     color: Color(0xff797979),
