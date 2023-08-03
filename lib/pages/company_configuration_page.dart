@@ -31,10 +31,10 @@ class _CompanyConfigurationPageState extends State<CompanyConfigurationPage> {
                 ),
                 const SizedBox(width: 10.0),
                 SizedBox(
-                  height: 23.0,
                   width: displayWidth(context) * 0.5,
                   child: TextField(
                     decoration: AppTheme.mainTextInputDecoration,
+                    style: AppTheme.mainTextInputStyle,
                   ),
                 )
               ],
@@ -48,10 +48,10 @@ class _CompanyConfigurationPageState extends State<CompanyConfigurationPage> {
                 ),
                 const SizedBox(width: 10.0),
                 SizedBox(
-                  height: 23.0,
                   width: displayWidth(context) * 0.5,
                   child: TextField(
                     decoration: AppTheme.mainTextInputDecoration,
+                    style: AppTheme.mainTextInputStyle,
                   ),
                 )
               ],
@@ -82,10 +82,10 @@ class _CompanyConfigurationPageState extends State<CompanyConfigurationPage> {
                     ),
                     const SizedBox(width: 10.0),
                     SizedBox(
-                      height: 23.0,
                       width: displayWidth(context) * 0.3,
                       child: TextField(
                         decoration: AppTheme.mainTextInputDecoration,
+                        style: AppTheme.mainTextInputStyle,
                       ),
                     ),
                     Expanded(
@@ -154,10 +154,10 @@ class _CompanyConfigurationPageState extends State<CompanyConfigurationPage> {
                               ),
                               const SizedBox(width: 10.0),
                               SizedBox(
-                                height: 23.0,
                                 width: displayWidth(context) * 0.5,
                                 child: TextField(
                                   decoration: AppTheme.mainTextInputDecoration,
+                                  style: AppTheme.mainTextInputStyle,
                                 ),
                               )
                             ],
@@ -177,10 +177,10 @@ class _CompanyConfigurationPageState extends State<CompanyConfigurationPage> {
                               ),
                               const SizedBox(width: 10.0),
                               SizedBox(
-                                height: 23.0,
                                 width: displayWidth(context) * 0.5,
                                 child: TextField(
                                   decoration: AppTheme.mainTextInputDecoration,
+                                  style: AppTheme.mainTextInputStyle,
                                 ),
                               )
                             ],

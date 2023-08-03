@@ -59,7 +59,8 @@ class AppTheme {
   );
 
   static InputDecoration mainTextInputDecoration = InputDecoration(
-    contentPadding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+    contentPadding: const EdgeInsets.fromLTRB(20, 3, 20, 3),
+    isDense: true,
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(100.0),
       borderSide: const BorderSide(color: primaryColor),
@@ -77,4 +78,6 @@ class AppTheme {
       borderSide: const BorderSide(color: Colors.red, width: 2.0),
     ),
   );
+
+  static TextStyle mainTextInputStyle = const TextStyle(fontSize: 12.0);
 }
