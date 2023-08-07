@@ -41,13 +41,14 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: false,
       routes: {
+        '/home': (context) => const HomePage(),
         '/company': (context) => const CompanyPage(),
         '/company_configuration': (context) => const CompanyConfigurationPage(),
         '/login': (context) => LoginPage(),
         '/company_selection': (context) => const SelectCompanyPage(),
         '/start_configuration': (context) => const StartConfigurationPage()
       },
-      home: LoginPage(),
+      home: HomePage(),
     );
   }
 }
