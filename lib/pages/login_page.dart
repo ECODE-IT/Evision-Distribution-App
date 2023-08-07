@@ -40,6 +40,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: const Color(0xffF3F3F3),
         body: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(
@@ -58,12 +59,27 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  width: 41.0,
-                  child: Divider(
-                    color: secondaryTextColor,
-                    thickness: 2.0,
-                  ),
+                Row(
+                  children: [
+                    const SizedBox(
+                      width: 41.0,
+                      child: Divider(
+                        color: secondaryTextColor,
+                        thickness: 2.0,
+                      ),
+                    ),
+                    const SizedBox(width: 10.0),
+                    Text(
+                      'Distributor Code : D569',
+                      style: GoogleFonts.lato(
+                        textStyle: const TextStyle(
+                          fontSize: 9.0,
+                          fontWeight: FontWeight.w500,
+                          color: secondaryTextColor,
+                        ),
+                      ),
+                    )
+                  ],
                 ),
                 SizedBox(height: displayHeight(context) * 0.05),
                 Container(
