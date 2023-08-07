@@ -9,7 +9,6 @@ import 'package:evision_distribution_app/pages/home_page.dart';
 import 'package:evision_distribution_app/pages/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'firebase_options.dart';
@@ -44,10 +43,11 @@ class MyApp extends StatelessWidget {
       routes: {
         '/company': (context) => const CompanyPage(),
         '/company_configuration': (context) => const CompanyConfigurationPage(),
-        '/login': (context) => const LoginPage(),
-        '/company_selection': (context) => const StartConfigurationPage()
+        '/login': (context) => LoginPage(),
+        '/company_selection': (context) => const SelectCompanyPage(),
+        '/start_configuration': (context) => const StartConfigurationPage()
       },
-      home: const SelectCompanyPage(),
+      home: LoginPage(),
     );
   }
 }
