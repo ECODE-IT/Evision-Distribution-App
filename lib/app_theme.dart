@@ -12,6 +12,9 @@ const double mainAppButtonWidth = 171.0;
 const double secondaryAppButtonHeight = 25.0;
 const double secondaryAppButtonWidth = 141.0;
 
+const double tertiaryAppButtonHeight = 48.0;
+const double tertiaryAppButtonWidth = 234.0;
+
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
     colorScheme:

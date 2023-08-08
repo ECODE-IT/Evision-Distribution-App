@@ -8,6 +8,7 @@ class AppButton extends StatelessWidget {
   final double? width;
   final VoidCallback? voidCallback;
   final Color? color;
+  final IconData? icon;
 
   const AppButton(
       {this.route,
@@ -16,6 +17,7 @@ class AppButton extends StatelessWidget {
       this.width,
       this.voidCallback,
       this.color,
+      this.icon,
       Key? key})
       : super(key: key);
 
@@ -36,10 +38,22 @@ class AppButton extends StatelessWidget {
           }
           voidCallback;
         },
-        child: Text(
-          displayText,
-          style: const TextStyle(fontWeight: FontWeight.w700),
-        ),
+        child: icon == null
+            ? Text(
+                displayText,
+                style: const TextStyle(fontWeight: FontWeight.w700),
+              )
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(icon),
+                  const SizedBox(width: 10.0),
+                  Text(
+                    displayText,
+                    style: const TextStyle(fontWeight: FontWeight.w700),
+                  )
+                ],
+              ),
       ),
     );
   }

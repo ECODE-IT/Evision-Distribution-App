@@ -2,7 +2,8 @@ import 'package:evision_distribution_app/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class CustomizedAppBar extends StatelessWidget {
-  const CustomizedAppBar({super.key, required this.title, required this.subTitle});
+  const CustomizedAppBar(
+      {super.key, required this.title, required this.subTitle});
   final String title;
   final String subTitle;
   @override
@@ -23,15 +24,30 @@ class CustomizedAppBar extends StatelessWidget {
                 child: InkWell(
                   child: const Icon(Icons.arrow_back_rounded),
                   onTap: () => {Navigator.pop(context)},
-
                 ),
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
+              Row(
                 children: [
-                  Text(title,style: AppTheme.titleStyle,),
-                  Text(subTitle, style: AppTheme.subtitleStyle,)
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        title,
+                        style: AppTheme.titleStyle,
+                      ),
+                      Text(
+                        subTitle,
+                        style: AppTheme.subtitleStyle,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(width: 8.0),
+                  const Image(
+                    image: AssetImage('assets/images/elephant_house.png'),
+                    height: 40.0,
+                    width: 40.0,
+                  ),
                 ],
               )
             ],

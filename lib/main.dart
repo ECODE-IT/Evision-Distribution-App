@@ -3,12 +3,13 @@ import 'dart:ui';
 import 'package:evision_distribution_app/app_theme.dart';
 import 'package:evision_distribution_app/pages/company_configuration_page.dart';
 import 'package:evision_distribution_app/pages/company_page.dart';
-import 'package:evision_distribution_app/pages/company_selection_page.dart';
+import 'package:evision_distribution_app/pages/dashboard_page.dart';
+import 'package:evision_distribution_app/pages/select_company_page.dart';
+import 'package:evision_distribution_app/pages/start_cofiguration_page.dart';
 import 'package:evision_distribution_app/pages/home_page.dart';
 import 'package:evision_distribution_app/pages/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'firebase_options.dart';
@@ -41,12 +42,15 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: false,
       routes: {
+        '/home': (context) => const HomePage(),
         '/company': (context) => const CompanyPage(),
         '/company_configuration': (context) => const CompanyConfigurationPage(),
-        '/login': (context) => const LoginPage(),
-        '/company_selection': (context) => const CompanySelectionPage()
+        '/login': (context) => LoginPage(),
+        '/company_selection': (context) => const SelectCompanyPage(),
+        '/start_configuration': (context) => const StartConfigurationPage(),
+        '/dashboard': (context) => const DashboardPage()
       },
-      home: const CompanySelectionPage(),
+      home: const SelectCompanyPage(),
     );
   }
 }

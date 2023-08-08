@@ -1,16 +1,11 @@
 import 'package:evision_distribution_app/app_theme.dart';
 import 'package:evision_distribution_app/components/app_button.dart';
+import 'package:evision_distribution_app/data.dart';
 import 'package:evision_distribution_app/layouts/secondary_app_layout.dart';
-import 'package:evision_distribution_app/models/company_model.dart';
 import 'package:flutter/material.dart';
 
-List<CompanyModel> companies = [
-  CompanyModel('John Keels Company', 'D569', 'C232932DFDFS'),
-  CompanyModel('Baurs LLC', 'D569', 'C232932DFDFS')
-];
-
-class CompanySelectionPage extends StatelessWidget {
-  const CompanySelectionPage({super.key});
+class StartConfigurationPage extends StatelessWidget {
+  const StartConfigurationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
