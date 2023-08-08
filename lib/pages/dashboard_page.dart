@@ -32,7 +32,7 @@ class _DashboardPageState extends State<DashboardPage> {
       subtitle: "Distributor Code : D569",
       widget: Expanded(
         child: ListView(
-          padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 20.0),
+          padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 20.0),
           children: [
             Container(
               height: 33.0,

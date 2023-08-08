@@ -52,49 +52,56 @@ class SelectCompanyPage extends StatelessWidget {
                   padding: EdgeInsets.zero,
                   itemCount: companies.length,
                   itemBuilder: (context, index) {
-                    return Container(
-                      height: 71.0,
-                      margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 30.0),
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20.0,
-                        vertical: 5.0,
-                      ),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.blue, width: 3.0),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                companies[index].companyName!,
-                                style: GoogleFonts.lato(
-                                  textStyle: const TextStyle(
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.w500,
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/login');
+                      },
+                      child: Container(
+                        height: 71.0,
+                        margin:
+                            const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 30.0),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20.0,
+                          vertical: 5.0,
+                        ),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.blue, width: 3.0),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  companies[index].companyName!,
+                                  style: GoogleFonts.lato(
+                                    textStyle: const TextStyle(
+                                      fontSize: 18.0,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Text(
-                                companies[index].distributorCode!,
-                                style: GoogleFonts.lato(
-                                  textStyle: const TextStyle(
-                                    fontSize: 9.0,
-                                    fontWeight: FontWeight.w500,
-                                    color: Color(0xff797979),
+                                Text(
+                                  companies[index].distributorCode!,
+                                  style: GoogleFonts.lato(
+                                    textStyle: const TextStyle(
+                                      fontSize: 9.0,
+                                      fontWeight: FontWeight.w500,
+                                      color: Color(0xff797979),
+                                    ),
                                   ),
-                                ),
-                              )
-                            ],
-                          ),
-                          Image(
-                            image: AssetImage(companies[index].imagePath ?? ''),
-                          ),
-                        ],
+                                )
+                              ],
+                            ),
+                            Image(
+                              image:
+                                  AssetImage(companies[index].imagePath ?? ''),
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   },
@@ -106,6 +113,7 @@ class SelectCompanyPage extends StatelessWidget {
                 height: tertiaryAppButtonHeight,
                 width: tertiaryAppButtonWidth,
                 icon: Icons.control_point,
+                route: '/company_configuration',
               )
             ],
           ),

@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
         '/start_configuration': (context) => const StartConfigurationPage(),
         '/dashboard': (context) => const DashboardPage()
       },
-      home: DashboardPage(),
+      home: const SelectCompanyPage(),
     );
   }
 }

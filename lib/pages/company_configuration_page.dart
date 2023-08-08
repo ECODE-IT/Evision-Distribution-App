@@ -62,7 +62,7 @@ class _CompanyConfigurationPageState extends State<CompanyConfigurationPage> {
                 displayText: 'Verify',
                 height: secondaryAppButtonHeight,
                 width: secondaryAppButtonWidth,
-                voidCallback: myMethod,
+                voidCallback: () {},
               ),
             ),
             const SizedBox(height: 20.0),
@@ -197,11 +197,9 @@ class _CompanyConfigurationPageState extends State<CompanyConfigurationPage> {
         displayText: 'Submit',
         height: mainAppButtonHeight,
         width: mainAppButtonWidth,
-        route: '/company_configuration',
+        route: '/company_selection',
         color: verified == true ? null : const Color(0xff86C8B0),
       ),
     );
   }
-
-  void myMethod() {}
 }

@@ -133,10 +133,11 @@ class LoginPage extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 35.0),
-                      AppButton(
+                      const AppButton(
                         displayText: 'SIGN IN',
                         height: mainAppButtonHeight,
                         width: mainAppButtonWidth,
+                        route: '/dashboard',
                       )
                     ],
                   ),
