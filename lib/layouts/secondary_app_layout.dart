@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class SecondaryAppLayout extends StatelessWidget {
   final String title;
   final Widget content;
-  final Widget button;
+  final Widget? button;
 
   const SecondaryAppLayout(
       this.title, this.content, this.button, {Key? key})

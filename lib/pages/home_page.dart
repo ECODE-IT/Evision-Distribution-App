@@ -78,38 +78,47 @@ class _HomePageState extends State<HomePage> {
                         AppHomeGridTile(
                           icon: Icons.dashboard,
                           tileName: 'Dashboard',
+                          route: '',
                         ),
                         AppHomeGridTile(
                           icon: Icons.assignment,
                           tileName: 'Purchase Order',
+                          route: '',
                         ),
                         AppHomeGridTile(
                           icon: Icons.contact_support,
                           tileName: 'Pending PO',
+                          route: '',
                         ),
                         AppHomeGridTile(
                           icon: Icons.description,
                           tileName: 'GRN LIST',
+                          route: '',
                         ),
                         AppHomeGridTile(
                           icon: Icons.airport_shuttle,
                           tileName: 'Loading',
+                          route: '',
                         ),
                         AppHomeGridTile(
                           icon: Icons.airport_shuttle,
                           tileName: 'UnLoading',
+                          route: '',
                         ),
                         AppHomeGridTile(
                           icon: Icons.dashboard,
                           tileName: 'Debit Note',
+                          route: '',
                         ),
                         AppHomeGridTile(
                           icon: Icons.assessment,
                           tileName: 'Reports',
+                          route: '',
                         ),
                         AppHomeGridTile(
                           icon: Icons.settings,
                           tileName: 'Setting',
+                          route: '/settings',
                         )
                       ],
                     ),

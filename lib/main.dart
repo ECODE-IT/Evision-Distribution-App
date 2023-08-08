@@ -5,6 +5,7 @@ import 'package:evision_distribution_app/pages/company_configuration_page.dart';
 import 'package:evision_distribution_app/pages/company_page.dart';
 import 'package:evision_distribution_app/pages/dashboard_page.dart';
 import 'package:evision_distribution_app/pages/select_company_page.dart';
+import 'package:evision_distribution_app/pages/settings_page.dart';
 import 'package:evision_distribution_app/pages/start_cofiguration_page.dart';
 import 'package:evision_distribution_app/pages/home_page.dart';
 import 'package:evision_distribution_app/pages/login_page.dart';
@@ -48,7 +49,8 @@ class MyApp extends StatelessWidget {
         '/login': (context) => LoginPage(),
         '/company_selection': (context) => const SelectCompanyPage(),
         '/start_configuration': (context) => const StartConfigurationPage(),
-        '/dashboard': (context) => const DashboardPage()
+        '/dashboard': (context) => const DashboardPage(),
+        '/settings': (context) => const SettingsPage()
       },
       home: const SelectCompanyPage(),
     );
