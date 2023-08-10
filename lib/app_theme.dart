@@ -61,6 +61,9 @@ class AppTheme {
     ),
   );
 
+  static TextStyle appButtonDisplayTextStyle =
+      const TextStyle(fontWeight: FontWeight.w700, fontFamily: 'Lato');
+
   static InputDecoration mainTextInputDecoration = InputDecoration(
     contentPadding: const EdgeInsets.fromLTRB(20, 3, 20, 3),
     isDense: true,

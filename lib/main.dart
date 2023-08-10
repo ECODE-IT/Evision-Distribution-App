@@ -4,6 +4,8 @@ import 'package:evision_distribution_app/app_theme.dart';
 import 'package:evision_distribution_app/pages/company_configuration_page.dart';
 import 'package:evision_distribution_app/pages/company_page.dart';
 import 'package:evision_distribution_app/pages/dashboard_page.dart';
+import 'package:evision_distribution_app/pages/grn_list_page.dart';
+import 'package:evision_distribution_app/pages/pending_po_page.dart';
 import 'package:evision_distribution_app/pages/select_company_page.dart';
 import 'package:evision_distribution_app/pages/settings_page.dart';
 import 'package:evision_distribution_app/pages/start_cofiguration_page.dart';
@@ -50,7 +52,9 @@ class MyApp extends StatelessWidget {
         '/company_selection': (context) => const SelectCompanyPage(),
         '/start_configuration': (context) => const StartConfigurationPage(),
         '/dashboard': (context) => const DashboardPage(),
-        '/settings': (context) => const SettingsPage()
+        '/settings': (context) => const SettingsPage(),
+        '/grn_list': (context) => const GrnListPage(),
+        '/pending_po': (context) => const PendingPoPage(),
       },
       home: const SelectCompanyPage(),
     );

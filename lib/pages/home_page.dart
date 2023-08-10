@@ -1,10 +1,8 @@
-import 'package:evision_distribution_app/app_theme.dart';
 import 'package:evision_distribution_app/components/app_home_grid_tile.dart';
 import 'package:evision_distribution_app/components/center_content_card.dart';
 import 'package:evision_distribution_app/components/default_background.dart';
 import 'package:evision_distribution_app/size_helpers.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -43,12 +41,12 @@ class _HomePageState extends State<HomePage> {
               AppHomeGridTile(
                 icon: Icons.contact_support,
                 tileName: 'Pending PO',
-                route: '',
+                route: '/pending_po',
               ),
               AppHomeGridTile(
                 icon: Icons.description,
                 tileName: 'GRN LIST',
-                route: '',
+                route: '/grn_list',
               ),
               AppHomeGridTile(
                 icon: Icons.airport_shuttle,

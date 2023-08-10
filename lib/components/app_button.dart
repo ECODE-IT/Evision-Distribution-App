@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class AppButton extends StatelessWidget {
   final String? route;
   final String displayText;
+  final TextStyle? displayTextStyle;
   final double height;
   final double? width;
   final VoidCallback? voidCallback;
@@ -13,6 +14,7 @@ class AppButton extends StatelessWidget {
   const AppButton(
       {this.route,
       required this.displayText,
+      this.displayTextStyle,
       required this.height,
       this.width,
       this.voidCallback,
@@ -23,6 +25,11 @@ class AppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var iconText = Text(
+      displayText,
+      style: displayTextStyle ?? AppTheme.appButtonDisplayTextStyle,
+    );
+
     return SizedBox(
       height: height,
       width: width,
@@ -39,20 +46,10 @@ class AppButton extends StatelessWidget {
           voidCallback;
         },
         child: icon == null
-            ? Text(
-                displayText,
-                style: const TextStyle(fontWeight: FontWeight.w700),
-              )
+            ? iconText
             : Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(icon),
-                  const SizedBox(width: 10.0),
-                  Text(
-                    displayText,
-                    style: const TextStyle(fontWeight: FontWeight.w700),
-                  )
-                ],
+                children: [Icon(icon), const SizedBox(width: 10.0), iconText],
               ),
       ),
     );
