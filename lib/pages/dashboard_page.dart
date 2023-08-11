@@ -34,7 +34,7 @@ class _DashboardPageState extends State<DashboardPage> {
         content: Column(
           children: [
             Container(
-              height: (displayHeight(context) * 0.7) - 80.0,
+              height: (displayHeight(context) * 0.7) - 100.0,
               padding: const EdgeInsets.only(top: 25.0),
               margin: const EdgeInsets.only(bottom: 20.0),
               child: WebViewWidget(controller: controller),

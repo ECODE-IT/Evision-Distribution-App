@@ -8,6 +8,7 @@ class DefaultBackground extends StatefulWidget {
   final String subtitle;
   final Widget widget;
   final CallbackAction? callbackAction;
+  final Widget? pageButton;
 
   const DefaultBackground(
       {super.key,
@@ -15,7 +16,8 @@ class DefaultBackground extends StatefulWidget {
       this.callbackAction,
       required this.title,
       required this.subtitle,
-      required this.widget});
+      required this.widget,
+      this.pageButton});
 
   @override
   State<DefaultBackground> createState() => _DefaultBackgroundState();
@@ -37,6 +39,14 @@ class _DefaultBackgroundState extends State<DefaultBackground> {
             Container(
               child: widget.widget,
             ),
+            const SizedBox(height: 25.0),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Padding(
+                padding: EdgeInsets.only(right: 20.0),
+                child: widget.pageButton ?? const SizedBox(),
+              ),
+            )
           ],
         ),
       ),

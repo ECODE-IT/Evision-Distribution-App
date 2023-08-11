@@ -15,17 +15,26 @@ class PendingPoPage extends StatelessWidget {
       title: "John Keells Company",
       subtitle: "Distributor Code : D569",
       widget: ThirdAppComponentWidget(
-          'Pending PO',
-          Container(
-            decoration: AppTheme.containerBoxDecoration,
-            child: ListView.builder(
-              padding: const EdgeInsets.only(top: 5.0),
-              itemCount: poList.length,
-              itemBuilder: (context, index) {
-                return Column(
+        title: 'Pending PO',
+        content: Container(
+          decoration: AppTheme.containerBoxDecoration,
+          child: ListView.builder(
+            padding: const EdgeInsets.only(top: 5.0),
+            itemCount: poList.length,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: () {
+                  Navigator.of(context).pushNamed(
+                    '/grn',
+                    arguments: poList[index],
+                  );
+                },
+                child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 14.0),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 8.0, horizontal: 14.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -82,11 +91,12 @@ class PendingPoPage extends StatelessWidget {
                       thickness: 0.5,
                     )
                   ],
-                );
-              },
-            ),
+                ),
+              );
+            },
           ),
-          null),
+        ),
+      ),
     );
   }
 }

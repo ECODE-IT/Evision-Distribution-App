@@ -1,5 +1,4 @@
 import 'package:evision_distribution_app/app_theme.dart';
-import 'package:evision_distribution_app/components/app_button.dart';
 import 'package:evision_distribution_app/size_helpers.dart';
 import 'package:flutter/material.dart';
 
@@ -7,9 +6,14 @@ class ThirdAppComponentWidget extends StatelessWidget {
   final String title;
   final Widget content;
   final Widget? button;
+  final Widget? topButton;
 
-  const ThirdAppComponentWidget(this.title, this.content, this.button,
-      {super.key});
+  const ThirdAppComponentWidget(
+      {required this.title,
+      required this.content,
+      this.button,
+      this.topButton,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +40,7 @@ class ThirdAppComponentWidget extends StatelessWidget {
                           fontWeight: FontWeight.w700,
                         ),
                       ),
-                      const AppButton(displayText: 'Add GRN', height: 27.0)
+                      topButton ?? const SizedBox()
                     ],
                   ),
                   const SizedBox(
@@ -51,9 +55,7 @@ class ThirdAppComponentWidget extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10.0),
-            Expanded(
-              child: content
-            ),
+            Expanded(child: content),
             SizedBox(height: displayHeight(context) * 0.05),
             Align(
               alignment: Alignment.centerRight,

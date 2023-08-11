@@ -1,16 +1,8 @@
 import 'dart:ui';
 
 import 'package:evision_distribution_app/app_theme.dart';
-import 'package:evision_distribution_app/pages/company_configuration_page.dart';
-import 'package:evision_distribution_app/pages/company_page.dart';
-import 'package:evision_distribution_app/pages/dashboard_page.dart';
-import 'package:evision_distribution_app/pages/grn_list_page.dart';
-import 'package:evision_distribution_app/pages/pending_po_page.dart';
 import 'package:evision_distribution_app/pages/select_company_page.dart';
-import 'package:evision_distribution_app/pages/settings_page.dart';
-import 'package:evision_distribution_app/pages/start_cofiguration_page.dart';
-import 'package:evision_distribution_app/pages/home_page.dart';
-import 'package:evision_distribution_app/pages/login_page.dart';
+import 'package:evision_distribution_app/route_generator.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +28,6 @@ Future main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -44,19 +35,9 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: false,
-      routes: {
-        '/home': (context) => const HomePage(),
-        '/company': (context) => const CompanyPage(),
-        '/company_configuration': (context) => const CompanyConfigurationPage(),
-        '/login': (context) => LoginPage(),
-        '/company_selection': (context) => const SelectCompanyPage(),
-        '/start_configuration': (context) => const StartConfigurationPage(),
-        '/dashboard': (context) => const DashboardPage(),
-        '/settings': (context) => const SettingsPage(),
-        '/grn_list': (context) => const GrnListPage(),
-        '/pending_po': (context) => const PendingPoPage(),
-      },
+      initialRoute: '/',
       home: const SelectCompanyPage(),
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }

@@ -40,7 +40,7 @@ class CenterContentCard extends StatelessWidget {
             ),
           ),
           Container(
-            height: displayHeight(context) * 0.7,
+            height: displayHeight(context) * 0.67,
             decoration: AppTheme.containerBoxDecoration.copyWith(
               borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(11.0),
