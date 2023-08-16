@@ -28,6 +28,8 @@ class AppTheme {
       const TextStyle(fontWeight: FontWeight.w900, fontSize: 17);
   static TextStyle subtitleStyle =
       const TextStyle(fontSize: 10, color: Color(0xFF797979));
+  static TextStyle secondaryTextStyle =
+      const TextStyle(fontWeight: FontWeight.w700, fontFamily: 'Lato');
 
   static BoxDecoration customizedCardDecoration = BoxDecoration(
     color: Colors.white,
