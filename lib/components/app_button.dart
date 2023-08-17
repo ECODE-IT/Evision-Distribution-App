@@ -10,17 +10,18 @@ class AppButton extends StatelessWidget {
   final VoidCallback? voidCallback;
   final Color? color;
   final IconData? icon;
+  final Object? arguments;
 
-  const AppButton(
-      {this.route,
-      required this.displayText,
-      this.displayTextStyle,
-      required this.height,
-      this.width,
-      this.voidCallback,
-      this.color,
-      this.icon,
-      Key? key})
+  const AppButton({this.route,
+    required this.displayText,
+    this.displayTextStyle,
+    required this.height,
+    this.width,
+    this.voidCallback,
+    this.color,
+    this.icon,
+    this.arguments,
+    Key? key})
       : super(key: key);
 
   @override
@@ -37,20 +38,20 @@ class AppButton extends StatelessWidget {
         style: color == null
             ? AppTheme.appButtonStyle
             : AppTheme.appButtonStyle.copyWith(
-                backgroundColor: MaterialStatePropertyAll(color),
-              ),
+          backgroundColor: MaterialStatePropertyAll(color),
+        ),
         onPressed: () {
           if (route != null) {
-            Navigator.pushNamed(context, route!);
+            Navigator.of(context).pushNamed(route!, arguments: arguments);
           }
           voidCallback;
         },
         child: icon == null
             ? iconText
             : Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [Icon(icon), const SizedBox(width: 10.0), iconText],
-              ),
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [Icon(icon), const SizedBox(width: 10.0), iconText],
+        ),
       ),
     );
   }

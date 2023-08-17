@@ -20,3 +20,5 @@ List<GrnModel> grnList = [
   GrnModel(03, 'CDS0041', 'Elephanthouse Sausage 675g', 8, 128.50, false),
   GrnModel(04, 'CDS0023', 'Elephanthouse Wonder Bar  Ice cream', 8, 128.50, false),
 ];
+
+const List<String> list = <String>['One', 'Two', 'Three', 'Four'];

@@ -17,7 +17,6 @@ class GrnPage extends StatefulWidget {
   State<GrnPage> createState() => _GrnPageState();
 }
 
-const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
 TextStyle _listItemTextStyle =
     AppTheme.secondaryTextStyle.copyWith(color: const Color(0xff5A5A5A));
 TextStyle _expandedListItemTextStyle = const TextStyle(

@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
               AppHomeGridTile(
                 icon: Icons.assignment,
                 tileName: 'Purchase Order',
-                route: '',
+                route: '/purchase_order',
               ),
               AppHomeGridTile(
                 icon: Icons.contact_support,
