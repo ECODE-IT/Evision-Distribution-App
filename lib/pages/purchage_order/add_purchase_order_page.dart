@@ -1,6 +1,8 @@
 import 'package:evision_distribution_app/app_theme.dart';
 import 'package:evision_distribution_app/components/default_background.dart';
 import 'package:evision_distribution_app/data.dart';
+import 'package:evision_distribution_app/models/grn_model.dart';
+import 'package:evision_distribution_app/models/po_model.dart';
 import 'package:evision_distribution_app/size_helpers.dart';
 import 'package:flutter/material.dart';
 
@@ -11,15 +13,22 @@ class AddPurchaseOrderPage extends StatefulWidget {
   State<AddPurchaseOrderPage> createState() => _AddPurchaseOrderPageState();
 }
 
-TextStyle _listItemTextStyle =
-    AppTheme.secondaryTextStyle.copyWith(color: const Color(0xff5A5A5A));
-TextStyle _expandedListItemTextStyle = const TextStyle(
-    fontSize: 8.0, fontWeight: FontWeight.w500, color: secondaryTextColor);
-
 class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
   final TextEditingController _poNumberController = TextEditingController();
   String dropdownValue = list.first;
+  GrnModel? dropdownValueOfProducts;
   bool isChecked = false;
+
+  TextStyle _dropdownItemTextStyle = AppTheme.secondaryTextStyle.copyWith(
+    fontSize: 10.0,
+    color: const Color(0xff5A5A5A),
+  );
+
+  TextStyle _dropdownItemSubTextStyle = AppTheme.secondaryTextStyle.copyWith(
+    fontWeight: FontWeight.w500,
+    fontSize: 6.0,
+    color: secondaryTextColor,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +70,6 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                   ),
                   Container(
                     height: (displayHeight(context) * 0.7) - 80.0,
-                    padding: const EdgeInsets.only(top: 25.0),
                     margin: const EdgeInsets.only(bottom: 20.0),
                     child: Column(
                       children: [
@@ -121,10 +129,11 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                                         value: dropdownValue,
                                         isExpanded: true,
                                         icon: const Icon(
-                                            Icons.keyboard_arrow_down),
+                                          Icons.keyboard_arrow_down,
+                                          size: 15.0,
+                                        ),
                                         elevation: 16,
                                         onChanged: (String? value) {
-                                          // This is called when the user selects an item.
                                           setState(() {
                                             dropdownValue = value!;
                                           });
@@ -181,10 +190,11 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                                         value: dropdownValue,
                                         isExpanded: true,
                                         icon: const Icon(
-                                            Icons.keyboard_arrow_down),
+                                          Icons.keyboard_arrow_down,
+                                          size: 15.0,
+                                        ),
                                         elevation: 16,
                                         onChanged: (String? value) {
-                                          // This is called when the user selects an item.
                                           setState(() {
                                             dropdownValue = value!;
                                           });
@@ -242,10 +252,11 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                                         value: dropdownValue,
                                         isExpanded: true,
                                         icon: const Icon(
-                                            Icons.keyboard_arrow_down),
+                                          Icons.keyboard_arrow_down,
+                                          size: 15.0,
+                                        ),
                                         elevation: 16,
                                         onChanged: (String? value) {
-                                          // This is called when the user selects an item.
                                           setState(() {
                                             dropdownValue = value!;
                                           });
@@ -344,7 +355,6 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                                   ),
                                   elevation: 16,
                                   onChanged: (String? value) {
-                                    // This is called when the user selects an item.
                                     setState(() {
                                       dropdownValue = value!;
                                     });
@@ -391,7 +401,6 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                                   ),
                                   elevation: 16,
                                   onChanged: (String? value) {
-                                    // This is called when the user selects an item.
                                     setState(() {
                                       dropdownValue = value!;
                                     });
@@ -473,7 +482,7 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                               Container(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 5.0),
-                                width: displayWidth(context) * 0.4,
+                                width: displayWidth(context) * 0.5,
                                 height: 24.0,
                                 decoration: BoxDecoration(
                                   border: Border.all(
@@ -482,34 +491,70 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                                   borderRadius: BorderRadius.circular(32),
                                 ),
                                 child: DropdownButtonHideUnderline(
-                                  child: DropdownButton<String>(
-                                    value: dropdownValue,
+                                  child: DropdownButton<GrnModel>(
+                                    itemHeight: 60.0,
+                                    hint: const Text(
+                                      'Select Product',
+                                      style: TextStyle(fontSize: 8.0),
+                                    ),
+                                    value: dropdownValueOfProducts,
                                     isExpanded: true,
                                     icon: const Icon(
                                       Icons.keyboard_arrow_down,
                                       size: 19.0,
                                     ),
                                     elevation: 16,
-                                    onChanged: (String? value) {
-                                      // This is called when the user selects an item.
+                                    onChanged: (GrnModel? value) {
                                       setState(() {
-                                        dropdownValue = value!;
+                                        dropdownValueOfProducts = value!;
                                       });
                                     },
-                                    items: list.map<DropdownMenuItem<String>>(
-                                        (String value) {
-                                      return DropdownMenuItem<String>(
+                                    items: grnList.map((GrnModel value) {
+                                      return DropdownMenuItem(
                                         value: value,
-                                        child: Center(
-                                          child: Text(
-                                            value,
-                                            style: const TextStyle(
-                                              fontSize: 12.0,
-                                              fontWeight: FontWeight.w700,
-                                              fontFamily: 'Lato',
-                                              color: secondaryTextColor,
+                                        child: Column(
+                                          children: [
+                                            Row(
+                                              children: [
+                                                SizedBox(
+                                                  width: 50.0,
+                                                  child: Text(
+                                                    value.serialNumber,
+                                                    style:
+                                                        _dropdownItemTextStyle,
+                                                  ),
+                                                ),
+                                                Flexible(
+                                                  child: Text(
+                                                    value.name,
+                                                    style:
+                                                        _dropdownItemTextStyle,
+                                                  ),
+                                                )
+                                              ],
                                             ),
-                                          ),
+                                            Row(
+                                              children: [
+                                                const SizedBox(
+                                                  width: 40.0,
+                                                ),
+                                                Text(
+                                                  'Batch No - 00102',
+                                                  style:
+                                                      _dropdownItemSubTextStyle,
+                                                ),
+                                                const SizedBox(
+                                                  width: 40.0,
+                                                ),
+                                                Text(
+                                                  'Price - Rs.128.50',
+                                                  style:
+                                                      _dropdownItemSubTextStyle,
+                                                ),
+                                              ],
+                                            ),
+                                            const Divider(),
+                                          ],
                                         ),
                                       );
                                     }).toList(),
@@ -529,10 +574,15 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                                   ),
                                   const SizedBox(width: 5.0),
                                   SizedBox(
-                                    width: displayWidth(context) * 0.2,
+                                    width: displayWidth(context) * 0.15,
                                     child: TextField(
-                                      decoration:
-                                          AppTheme.mainTextInputDecoration,
+                                      decoration: AppTheme
+                                          .mainTextInputDecoration
+                                          .copyWith(
+                                        contentPadding:
+                                            const EdgeInsets.fromLTRB(
+                                                20, 1, 20, 1),
+                                      ),
                                       style: AppTheme.mainTextInputStyle,
                                     ),
                                   )
