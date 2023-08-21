@@ -669,7 +669,7 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                                           horizontal: 10.0),
                                       child: Text(
                                         'Select Product',
-                                        style: TextStyle(fontSize: 8.0),
+                                        style: TextStyle(fontSize: 10.0),
                                       ),
                                     ),
                                     value: dropdownValueOfProducts,
