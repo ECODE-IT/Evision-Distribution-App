@@ -518,6 +518,7 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                                                           .copyWith(
                                                               fontSize: 10.0),
                                                 ),
+                                                const SizedBox(width: 5.0),
                                                 Text(
                                                   'Price - Rs.128.50',
                                                   style:
