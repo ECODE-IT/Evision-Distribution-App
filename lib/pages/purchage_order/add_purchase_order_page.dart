@@ -154,8 +154,6 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                                                 value,
                                                 style: const TextStyle(
                                                   fontSize: 12.0,
-                                                  fontWeight: FontWeight.w700,
-                                                  fontFamily: 'Lato',
                                                   color: secondaryTextColor,
                                                 ),
                                               ),
@@ -215,8 +213,6 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                                                 value,
                                                 style: const TextStyle(
                                                   fontSize: 12.0,
-                                                  fontWeight: FontWeight.w700,
-                                                  fontFamily: 'Lato',
                                                   color: secondaryTextColor,
                                                 ),
                                               ),
@@ -277,8 +273,6 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                                                 value,
                                                 style: const TextStyle(
                                                   fontSize: 12.0,
-                                                  fontWeight: FontWeight.w700,
-                                                  fontFamily: 'Lato',
                                                   color: secondaryTextColor,
                                                 ),
                                               ),
@@ -342,7 +336,7 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                             Container(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 5.0),
-                              width: displayWidth(context) * 0.2,
+                              width: displayWidth(context) * 0.22,
                               height: 19.0,
                               decoration: BoxDecoration(
                                 color: const Color(0xffE4E4E4),
@@ -374,8 +368,6 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                                           value,
                                           style: const TextStyle(
                                             fontSize: 12.0,
-                                            fontWeight: FontWeight.w700,
-                                            fontFamily: 'Lato',
                                             color: secondaryTextColor,
                                           ),
                                         ),
@@ -388,7 +380,7 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                             Container(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 5.0),
-                              width: displayWidth(context) * 0.2,
+                              width: displayWidth(context) * 0.22,
                               height: 19.0,
                               decoration: BoxDecoration(
                                 color: const Color(0xffE4E4E4),
@@ -420,8 +412,6 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                                           value,
                                           style: const TextStyle(
                                             fontSize: 12.0,
-                                            fontWeight: FontWeight.w700,
-                                            fontFamily: 'Lato',
                                             color: secondaryTextColor,
                                           ),
                                         ),
@@ -432,7 +422,7 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                               ),
                             ),
                             SizedBox(
-                              width: displayWidth(context) * 0.3,
+                              width: displayWidth(context) * 0.35,
                               height: 19.0,
                               child: TextField(
                                 textAlign: TextAlign.left,
