@@ -5,6 +5,7 @@ import 'package:evision_distribution_app/models/grn_model.dart';
 import 'package:evision_distribution_app/models/po_model.dart';
 import 'package:evision_distribution_app/size_helpers.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AddPurchaseOrderPage extends StatefulWidget {
   const AddPurchaseOrderPage({Key? key}) : super(key: key);
@@ -18,13 +19,18 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
   String dropdownValue = list.first;
   GrnModel? dropdownValueOfProducts;
   bool isChecked = false;
+  GrnModel? _selectedGrn;
 
-  TextStyle _dropdownItemTextStyle = AppTheme.secondaryTextStyle.copyWith(
+  final TextStyle _iconLeterTextStyle =
+      AppTheme.appButtonDisplayTextStyle.copyWith(fontSize: 12.0);
+
+  final TextStyle _dropdownItemTextStyle = AppTheme.secondaryTextStyle.copyWith(
     fontSize: 10.0,
     color: const Color(0xff5A5A5A),
   );
 
-  TextStyle _dropdownItemSubTextStyle = AppTheme.secondaryTextStyle.copyWith(
+  final TextStyle _dropdownItemSubTextStyle =
+      AppTheme.secondaryTextStyle.copyWith(
     fontWeight: FontWeight.w500,
     fontSize: 6.0,
     color: secondaryTextColor,
@@ -470,6 +476,181 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                         Divider(
                           color: Colors.grey[400],
                         ),
+                        _selectedGrn != null
+                            ? Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 5.0),
+                                    child: Row(
+                                      children: [
+                                        const SizedBox(width: 5.0),
+                                        CircleAvatar(
+                                          backgroundColor:
+                                              const Color(0xffF2F2F2),
+                                          child: Text(
+                                            _selectedGrn!.serialNumber[0],
+                                            style: _iconLeterTextStyle,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 8.0),
+                                        SizedBox(
+                                          width: 54.0,
+                                          child: Text(
+                                            _selectedGrn!.serialNumber,
+                                            style: _dropdownItemTextStyle
+                                                .copyWith(fontSize: 12.0),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 8.0),
+                                        const SizedBox(
+                                          height: 56.0,
+                                          child: VerticalDivider(
+                                            color: Color(0xffD9D9D9),
+                                            width: 1.0,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 8.0),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(_selectedGrn!.name,
+                                                style: _dropdownItemTextStyle
+                                                    .copyWith(fontSize: 12.0),
+                                                textAlign: TextAlign.start),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  'Batch No - 00102',
+                                                  style:
+                                                      _dropdownItemSubTextStyle
+                                                          .copyWith(
+                                                              fontSize: 10.0),
+                                                ),
+                                                Text(
+                                                  'Price - Rs.128.50',
+                                                  style:
+                                                      _dropdownItemSubTextStyle
+                                                          .copyWith(
+                                                              fontSize: 10.0),
+                                                ),
+                                              ],
+                                            ),
+                                            const SizedBox(height: 8.0),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceEvenly,
+                                              children: [
+                                                Container(
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
+                                                      horizontal: 5.0),
+                                                  width: 70.0,
+                                                  height: 18.0,
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                      color: Colors.grey[400]!,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                  ),
+                                                  child:
+                                                      DropdownButtonHideUnderline(
+                                                    child:
+                                                        DropdownButton<String>(
+                                                      value: dropdownValue,
+                                                      isExpanded: true,
+                                                      icon: const Icon(
+                                                        Icons
+                                                            .keyboard_arrow_down,
+                                                        size: 15.0,
+                                                      ),
+                                                      elevation: 16,
+                                                      onChanged:
+                                                          (String? value) {
+                                                        setState(() {
+                                                          dropdownValue =
+                                                              value!;
+                                                        });
+                                                      },
+                                                      items: list.map<
+                                                              DropdownMenuItem<
+                                                                  String>>(
+                                                          (String value) {
+                                                        return DropdownMenuItem<
+                                                            String>(
+                                                          value: value,
+                                                          child: Center(
+                                                            child: Text(
+                                                              value,
+                                                              style:
+                                                                  const TextStyle(
+                                                                fontSize: 10.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                                fontFamily:
+                                                                    'Lato',
+                                                                color:
+                                                                    secondaryTextColor,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        );
+                                                      }).toList(),
+                                                    ),
+                                                  ),
+                                                ),
+                                                const SizedBox(
+                                                  width: 15.0,
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    const Text(
+                                                      'QTY',
+                                                      style: TextStyle(
+                                                        fontSize: 8.0,
+                                                        fontFamily: 'Lato',
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        color:
+                                                            secondaryTextColor,
+                                                      ),
+                                                    ),
+                                                    const SizedBox(width: 5.0),
+                                                    SizedBox(
+                                                      width: 35.0,
+                                                      child: TextField(
+                                                        decoration: AppTheme
+                                                            .mainTextInputDecoration
+                                                            .copyWith(
+                                                          contentPadding:
+                                                              const EdgeInsets
+                                                                      .fromLTRB(
+                                                                  20, 1, 20, 1),
+                                                        ),
+                                                        style: AppTheme
+                                                            .mainTextInputStyle,
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(height: 5.0),
+                                  Divider(
+                                    color: Colors.grey[300],
+                                  ),
+                                ],
+                              )
+                            : const SizedBox(),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 5.0),
                           child: Row(
@@ -492,10 +673,13 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                                 ),
                                 child: DropdownButtonHideUnderline(
                                   child: DropdownButton<GrnModel>(
-                                    itemHeight: 60.0,
-                                    hint: const Text(
-                                      'Select Product',
-                                      style: TextStyle(fontSize: 8.0),
+                                    hint: const Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10.0),
+                                      child: Text(
+                                        'Select Product',
+                                        style: TextStyle(fontSize: 8.0),
+                                      ),
                                     ),
                                     value: dropdownValueOfProducts,
                                     isExpanded: true,
@@ -506,7 +690,7 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                                     elevation: 16,
                                     onChanged: (GrnModel? value) {
                                       setState(() {
-                                        dropdownValueOfProducts = value!;
+                                        _selectedGrn = value!;
                                       });
                                     },
                                     items: grnList.map((GrnModel value) {
@@ -524,11 +708,15 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                                                         _dropdownItemTextStyle,
                                                   ),
                                                 ),
-                                                Flexible(
-                                                  child: Text(
-                                                    value.name,
-                                                    style:
-                                                        _dropdownItemTextStyle,
+                                                SizedBox(
+                                                  width: 140.0,
+                                                  child: FittedBox(
+                                                    fit: BoxFit.fitWidth,
+                                                    child: Text(
+                                                      value.name,
+                                                      style:
+                                                          _dropdownItemTextStyle,
+                                                    ),
                                                   ),
                                                 )
                                               ],
@@ -536,7 +724,7 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                                             Row(
                                               children: [
                                                 const SizedBox(
-                                                  width: 40.0,
+                                                  width: 50.0,
                                                 ),
                                                 Text(
                                                   'Batch No - 00102',
@@ -574,7 +762,7 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                                   ),
                                   const SizedBox(width: 5.0),
                                   SizedBox(
-                                    width: displayWidth(context) * 0.15,
+                                    width: displayWidth(context) * 0.13,
                                     child: TextField(
                                       decoration: AppTheme
                                           .mainTextInputDecoration

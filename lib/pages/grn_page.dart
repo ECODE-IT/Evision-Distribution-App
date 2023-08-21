@@ -105,7 +105,6 @@ class _GrnPageState extends State<GrnPage> {
                                   icon: const Icon(Icons.keyboard_arrow_down),
                                   elevation: 16,
                                   onChanged: (String? value) {
-                                    // This is called when the user selects an item.
                                     setState(() {
                                       dropdownValue = value!;
                                     });
@@ -138,7 +137,7 @@ class _GrnPageState extends State<GrnPage> {
                   Container(
                     color: const Color(0xffF7F7F7),
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 15.0, vertical: 5.0),
+                        horizontal: 15.0, vertical: 3.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -151,8 +150,8 @@ class _GrnPageState extends State<GrnPage> {
                               fontWeight: FontWeight.w700),
                         ),
                         SizedBox(
-                          width: displayWidth(context) * 0.5,
-                          height: 28.0,
+                          width: displayWidth(context) * 0.35,
+                          height: 19.0,
                           child: TextField(
                             textAlign: TextAlign.left,
                             onChanged: (value) {
@@ -164,10 +163,12 @@ class _GrnPageState extends State<GrnPage> {
                               filled: true,
                               fillColor: Colors.white,
                               hintText: 'Search Product',
+                              isDense: true,
                               contentPadding:
-                                  const EdgeInsets.fromLTRB(20, 3, 20, 3),
+                                  const EdgeInsets.fromLTRB(20, 0, 20, 20),
                               hintStyle: const TextStyle(
                                 color: Color(0xffBFBCBC),
+                                fontSize: 12.0,
                               ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: const BorderSide(
@@ -176,10 +177,11 @@ class _GrnPageState extends State<GrnPage> {
                                 borderRadius: BorderRadius.circular(2.0),
                               ),
                               suffixIcon: IconButton(
+                                padding: EdgeInsets.zero,
                                 icon: const Icon(
                                   Icons.search,
                                   color: Colors.grey,
-                                  size: 18.0,
+                                  size: 10.0,
                                 ),
                                 onPressed: () => {},
                               ),
@@ -192,175 +194,170 @@ class _GrnPageState extends State<GrnPage> {
                   Divider(color: Colors.grey[300]),
                   Expanded(
                     child: ListView.builder(
-                        itemCount: grnList.length,
-                        itemBuilder: (context, index) {
-                          var grn = grnList[index];
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 12.0, vertical: 5.0),
-                            child: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        CircleAvatar(
-                                          backgroundColor:
-                                              const Color(0xffF2F2F2),
-                                          child: Text(
-                                            '0${grn.id}',
-                                            style: _listItemTextStyle.copyWith(
-                                                fontSize: 12.0),
-                                          ),
-                                        ),
-                                        const SizedBox(width: 10.0),
-                                        Text(
-                                          grn.serialNumber,
+                      itemCount: grnList.length,
+                      itemBuilder: (context, index) {
+                        var grn = grnList[index];
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12.0, vertical: 5.0),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      CircleAvatar(
+                                        backgroundColor:
+                                            const Color(0xffF2F2F2),
+                                        child: Text(
+                                          '0${grn.id}',
                                           style: _listItemTextStyle.copyWith(
-                                              fontSize: 11.0),
+                                              fontSize: 12.0),
                                         ),
-                                        const SizedBox(
-                                          height: 24.0,
-                                          child: VerticalDivider(
-                                            color: Color(0xffD9D9D9),
-                                          ),
+                                      ),
+                                      const SizedBox(width: 10.0),
+                                      Text(
+                                        grn.serialNumber,
+                                        style: _listItemTextStyle.copyWith(
+                                            fontSize: 11.0),
+                                      ),
+                                      const SizedBox(
+                                        height: 24.0,
+                                        child: VerticalDivider(
+                                          color: Color(0xffD9D9D9),
                                         ),
-                                        SizedBox(
-                                          width: displayWidth(context) * 0.4,
+                                      ),
+                                      SizedBox(
+                                        width: displayWidth(context) * 0.4,
+                                        child: Text(
+                                          grn.name,
+                                          style: _listItemTextStyle.copyWith(
+                                              fontSize: 13.0),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      const SizedBox(
+                                        height: 24.0,
+                                        child: VerticalDivider(
+                                          color: Color(0xffD9D9D9),
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            grn.expanded = !grn.expanded;
+                                          });
+                                        },
+                                        child: SizedBox(
+                                          width: 36.0,
                                           child: Text(
-                                            grn.name,
-                                            style: _listItemTextStyle.copyWith(
-                                                fontSize: 13.0),
+                                            grn.expanded == true
+                                                ? 'Add'
+                                                : 'Change',
+                                            style: AppTheme.secondaryTextStyle
+                                                .copyWith(
+                                                    fontSize: 10.0,
+                                                    color:
+                                                        mainAppButtonBackgroundColor),
+                                            textAlign: TextAlign.center,
                                           ),
                                         ),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        const SizedBox(
-                                          height: 24.0,
-                                          child: VerticalDivider(
-                                            color: Color(0xffD9D9D9),
-                                          ),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                              grn.expanded == true
+                                  ? Container(
+                                      height: 31.0,
+                                      decoration: const BoxDecoration(
+                                        color: Color(0xffF2F2F2),
+                                        borderRadius: BorderRadius.only(
+                                          bottomRight: Radius.circular(12.0),
+                                          bottomLeft: Radius.circular(12.0),
                                         ),
-                                        GestureDetector(
-                                          onTap: () {
-                                            setState(() {
-                                              grn.expanded = !grn.expanded;
-                                            });
-                                          },
-                                          child: SizedBox(
-                                            width: 36.0,
-                                            child: Text(
-                                              grn.expanded == true
-                                                  ? 'Add'
-                                                  : 'Change',
-                                              style: AppTheme.secondaryTextStyle
-                                                  .copyWith(
-                                                      fontSize: 10.0,
-                                                      color:
-                                                          mainAppButtonBackgroundColor),
-                                              textAlign: TextAlign.center,
-                                            ),
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Text(
+                                            'PO QTY - ${grn.qty}',
+                                            style: _expandedListItemTextStyle,
                                           ),
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                ),
-                                grn.expanded == true
-                                    ? Container(
-                                        height: 31.0,
-                                        decoration: const BoxDecoration(
-                                          color: Color(0xffF2F2F2),
-                                          borderRadius: BorderRadius.only(
-                                            bottomRight: Radius.circular(12.0),
-                                            bottomLeft: Radius.circular(12.0),
-                                          ),
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            Text(
-                                              'PO QTY - ${grn.qty}',
-                                              style: _expandedListItemTextStyle,
-                                            ),
-                                            Row(
-                                              children: [
-                                                Text(
-                                                  'New QTY',
-                                                  style:
-                                                      _expandedListItemTextStyle,
-                                                ),
-                                                const SizedBox(width: 5.0),
-                                                SizedBox(
-                                                  width: 54.0,
-                                                  height: 20.0,
-                                                  child: TextFormField(
-                                                    decoration: AppTheme
-                                                        .mainTextInputDecoration
-                                                        .copyWith(
-                                                      filled: true,
-                                                      fillColor: Colors.white,
-                                                      isDense: true,
-                                                      contentPadding:
-                                                          EdgeInsets.zero,
-                                                    ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                'New QTY',
+                                                style:
+                                                    _expandedListItemTextStyle,
+                                              ),
+                                              const SizedBox(width: 5.0),
+                                              SizedBox(
+                                                width: 54.0,
+                                                height: 20.0,
+                                                child: TextFormField(
+                                                  decoration: AppTheme
+                                                      .mainTextInputDecoration
+                                                      .copyWith(
+                                                    filled: true,
+                                                    fillColor: Colors.white,
+                                                    isDense: true,
+                                                    contentPadding:
+                                                        EdgeInsets.zero,
                                                   ),
-                                                )
-                                              ],
-                                            ),
-                                            Row(
-                                              children: [
-                                                Text(
-                                                  'Add Reason',
-                                                  style:
-                                                      _expandedListItemTextStyle,
                                                 ),
-                                                const SizedBox(width: 5.0),
-                                                Container(
-                                                  padding: const EdgeInsets
-                                                          .symmetric(
-                                                      horizontal: 5.0),
-                                                  width: displayWidth(context) *
-                                                      0.3,
-                                                  height: 20.0,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    border: Border.all(
-                                                      color: Colors.grey[400]!,
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5.0),
+                                              )
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                'Add Reason',
+                                                style:
+                                                    _expandedListItemTextStyle,
+                                              ),
+                                              const SizedBox(width: 5.0),
+                                              Container(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 5.0),
+                                                width:
+                                                    displayWidth(context) * 0.3,
+                                                height: 20.0,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  border: Border.all(
+                                                    color: Colors.grey[400]!,
                                                   ),
-                                                  child:
-                                                      DropdownButtonHideUnderline(
-                                                    child:
-                                                        DropdownButton<String>(
-                                                      value: dropdownValue,
-                                                      isExpanded: true,
-                                                      icon: const Icon(
-                                                        Icons
-                                                            .keyboard_arrow_down,
-                                                        size: 20.0,
-                                                      ),
-                                                      elevation: 16,
-                                                      onChanged:
-                                                          (String? value) {
-                                                        // This is called when the user selects an item.
-                                                        setState(() {
-                                                          dropdownValue =
-                                                              value!;
-                                                        });
-                                                      },
-                                                      items: list.map<
-                                                              DropdownMenuItem<
-                                                                  String>>(
-                                                          (String value) {
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          5.0),
+                                                ),
+                                                child:
+                                                    DropdownButtonHideUnderline(
+                                                  child: DropdownButton<String>(
+                                                    value: dropdownValue,
+                                                    isExpanded: true,
+                                                    icon: const Icon(
+                                                      Icons.keyboard_arrow_down,
+                                                      size: 20.0,
+                                                    ),
+                                                    elevation: 16,
+                                                    onChanged: (String? value) {
+                                                      setState(() {
+                                                        dropdownValue = value!;
+                                                      });
+                                                    },
+                                                    items: list.map<
+                                                        DropdownMenuItem<
+                                                            String>>(
+                                                      (String value) {
                                                         return DropdownMenuItem<
                                                             String>(
                                                           value: value,
@@ -381,21 +378,23 @@ class _GrnPageState extends State<GrnPage> {
                                                             ),
                                                           ),
                                                         );
-                                                      }).toList(),
-                                                    ),
+                                                      },
+                                                    ).toList(),
                                                   ),
                                                 ),
-                                              ],
-                                            )
-                                          ],
-                                        ),
-                                      )
-                                    : const SizedBox(),
-                                Divider(color: Colors.grey[300]),
-                              ],
-                            ),
-                          );
-                        }),
+                                              ),
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    )
+                                  : const SizedBox(),
+                              Divider(color: Colors.grey[300]),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
                   )
                 ],
               ),
