@@ -18,8 +18,10 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
   final TextEditingController _poNumberController = TextEditingController();
   String dropdownValue = list.first;
   GrnModel? dropdownValueOfProducts;
+  List<GrnModel> _filteredList = [];
   bool isChecked = false;
   GrnModel? _selectedGrn;
+  String _searchString = '';
 
   final TextStyle _iconLeterTextStyle =
       AppTheme.appButtonDisplayTextStyle.copyWith(fontSize: 12.0);
@@ -32,7 +34,7 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
   final TextStyle _dropdownItemSubTextStyle =
       AppTheme.secondaryTextStyle.copyWith(
     fontWeight: FontWeight.w500,
-    fontSize: 6.0,
+    fontSize: 10.0,
     color: secondaryTextColor,
   );
 
@@ -651,93 +653,30 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                                 backgroundColor: Color(0xffF2F2F2),
                                 child: Text(''),
                               ),
-                              Container(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 5.0),
+                              SizedBox(
                                 width: displayWidth(context) * 0.5,
-                                height: 24.0,
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: Colors.grey[400]!,
-                                  ),
-                                  borderRadius: BorderRadius.circular(32),
-                                ),
-                                child: DropdownButtonHideUnderline(
-                                  child: DropdownButton<GrnModel>(
-                                    hint: const Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 10.0),
-                                      child: Text(
-                                        'Select Product',
-                                        style: TextStyle(fontSize: 10.0),
-                                      ),
+                                child: TextField(
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _searchString = value;
+                                      _filteredList.clear();
+                                      filter();
+                                    });
+                                  },
+                                  decoration:
+                                      AppTheme.mainTextInputDecoration.copyWith(
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(32.0),
+                                      borderSide:
+                                          BorderSide(color: Colors.grey[400]!),
                                     ),
-                                    value: dropdownValueOfProducts,
-                                    isExpanded: true,
-                                    icon: const Icon(
-                                      Icons.keyboard_arrow_down,
-                                      size: 19.0,
+                                    hintText: 'Select Product',
+                                    hintStyle: const TextStyle(
+                                      fontFamily: 'Lato',
+                                      color: Color(0xffBFBCBC),
                                     ),
-                                    elevation: 16,
-                                    onChanged: (GrnModel? value) {
-                                      setState(() {
-                                        _selectedGrn = value!;
-                                      });
-                                    },
-                                    items: grnList.map((GrnModel value) {
-                                      return DropdownMenuItem(
-                                        value: value,
-                                        child: Column(
-                                          children: [
-                                            Row(
-                                              children: [
-                                                SizedBox(
-                                                  width: 50.0,
-                                                  child: Text(
-                                                    value.serialNumber,
-                                                    style:
-                                                        _dropdownItemTextStyle,
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  width: 140.0,
-                                                  child: FittedBox(
-                                                    fit: BoxFit.fitWidth,
-                                                    child: Text(
-                                                      value.name,
-                                                      style:
-                                                          _dropdownItemTextStyle,
-                                                    ),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                            Row(
-                                              children: [
-                                                const SizedBox(
-                                                  width: 50.0,
-                                                ),
-                                                Text(
-                                                  'Batch No - 00102',
-                                                  style:
-                                                      _dropdownItemSubTextStyle,
-                                                ),
-                                                const SizedBox(
-                                                  width: 40.0,
-                                                ),
-                                                Text(
-                                                  'Price - Rs.128.50',
-                                                  style:
-                                                      _dropdownItemSubTextStyle,
-                                                ),
-                                              ],
-                                            ),
-                                            const Divider(),
-                                          ],
-                                        ),
-                                      );
-                                    }).toList(),
                                   ),
+                                  style: AppTheme.mainTextInputStyle,
                                 ),
                               ),
                               Row(
@@ -774,6 +713,58 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                         Divider(
                           color: Colors.grey[300],
                         ),
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount: _filteredList.length,
+                            itemBuilder: (context, index) {
+                              return Column(
+                                children: [
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      SizedBox(
+                                        width: 50.0,
+                                        child: Text(
+                                          _filteredList[index].serialNumber,
+                                          style: _dropdownItemTextStyle,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 140.0,
+                                        child: FittedBox(
+                                          fit: BoxFit.fitWidth,
+                                          child: Text(
+                                            _filteredList[index].name,
+                                            style: _dropdownItemTextStyle,
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      const SizedBox(
+                                        width: 50.0,
+                                      ),
+                                      Text(
+                                        'Batch No - 00102',
+                                        style: _dropdownItemSubTextStyle,
+                                      ),
+                                      const SizedBox(
+                                        width: 40.0,
+                                      ),
+                                      Text(
+                                        'Price - Rs.128.50',
+                                        style: _dropdownItemSubTextStyle,
+                                      ),
+                                    ],
+                                  ),
+                                  const Divider(),
+                                ],
+                              );
+                            },
+                          ),
+                        )
                       ],
                     ),
                   ),
@@ -784,5 +775,14 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
         ),
       ),
     );
+  }
+
+  void filter() {
+    for (var i in grnList) {
+      if (i.serialNumber.toLowerCase().contains(_searchString.toLowerCase()) ||
+          i.name.toLowerCase().contains(_searchString.toLowerCase())) {
+        _filteredList.add(i);
+      }
+    }
   }
 }

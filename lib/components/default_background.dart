@@ -28,6 +28,7 @@ class _DefaultBackgroundState extends State<DefaultBackground> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Column(
           children: [
             CustomizedAppBar(
