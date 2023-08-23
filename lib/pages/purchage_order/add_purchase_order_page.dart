@@ -1,3 +1,4 @@
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:evision_distribution_app/app_theme.dart';
 import 'package:evision_distribution_app/components/default_background.dart';
 import 'package:evision_distribution_app/data.dart';
@@ -18,10 +19,8 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
   final TextEditingController _poNumberController = TextEditingController();
   String dropdownValue = list.first;
   GrnModel? dropdownValueOfProducts;
-  List<GrnModel> _filteredList = [];
   bool isChecked = false;
   GrnModel? _selectedGrn;
-  String _searchString = '';
 
   final TextStyle _iconLeterTextStyle =
       AppTheme.appButtonDisplayTextStyle.copyWith(fontSize: 12.0);
@@ -653,30 +652,35 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                                 backgroundColor: Color(0xffF2F2F2),
                                 child: Text(''),
                               ),
-                              SizedBox(
+                              Container(
                                 width: displayWidth(context) * 0.5,
-                                child: TextField(
-                                  onChanged: (value) {
-                                    setState(() {
-                                      _searchString = value;
-                                      _filteredList.clear();
-                                      filter();
-                                    });
-                                  },
-                                  decoration:
-                                      AppTheme.mainTextInputDecoration.copyWith(
-                                    enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(32.0),
-                                      borderSide:
-                                          BorderSide(color: Colors.grey[400]!),
-                                    ),
-                                    hintText: 'Select Product',
-                                    hintStyle: const TextStyle(
-                                      fontFamily: 'Lato',
-                                      color: Color(0xffBFBCBC),
+                                // height: 30.0,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Colors.grey[400]!,
+                                  ),
+                                  borderRadius: BorderRadius.circular(32),
+                                ),
+                                child: DropdownSearch<GrnModel>(
+                                  popupProps: PopupProps.bottomSheet(
+                                    // showSelectedItems: true,
+                                    itemBuilder: _dropdownListItem,
+                                    showSearchBox: true,
+                                  ),
+                                  itemAsString: (GrnModel g) => g.name,
+                                  items: grnList,
+                                  dropdownDecoratorProps:
+                                      const DropDownDecoratorProps(
+                                    dropdownSearchDecoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      contentPadding:
+                                          EdgeInsets.fromLTRB(20, 3, 20, 3),
+                                      isDense: true,
+                                      labelText: "Select Product",
+                                      labelStyle: TextStyle(fontSize: 12.0),
                                     ),
                                   ),
-                                  style: AppTheme.mainTextInputStyle,
+                                  onChanged: print,
                                 ),
                               ),
                               Row(
@@ -713,58 +717,6 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                         Divider(
                           color: Colors.grey[300],
                         ),
-                        Expanded(
-                          child: ListView.builder(
-                            itemCount: _filteredList.length,
-                            itemBuilder: (context, index) {
-                              return Column(
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      SizedBox(
-                                        width: 50.0,
-                                        child: Text(
-                                          _filteredList[index].serialNumber,
-                                          style: _dropdownItemTextStyle,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 140.0,
-                                        child: FittedBox(
-                                          fit: BoxFit.fitWidth,
-                                          child: Text(
-                                            _filteredList[index].name,
-                                            style: _dropdownItemTextStyle,
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      const SizedBox(
-                                        width: 50.0,
-                                      ),
-                                      Text(
-                                        'Batch No - 00102',
-                                        style: _dropdownItemSubTextStyle,
-                                      ),
-                                      const SizedBox(
-                                        width: 40.0,
-                                      ),
-                                      Text(
-                                        'Price - Rs.128.50',
-                                        style: _dropdownItemSubTextStyle,
-                                      ),
-                                    ],
-                                  ),
-                                  const Divider(),
-                                ],
-                              );
-                            },
-                          ),
-                        )
                       ],
                     ),
                   ),
@@ -777,12 +729,48 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
     );
   }
 
-  void filter() {
-    for (var i in grnList) {
-      if (i.serialNumber.toLowerCase().contains(_searchString.toLowerCase()) ||
-          i.name.toLowerCase().contains(_searchString.toLowerCase())) {
-        _filteredList.add(i);
-      }
-    }
+  Widget _dropdownListItem(
+      BuildContext context, GrnModel item, bool isSelected) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              SizedBox(
+                width: 50.0,
+                child: Text(
+                  item.serialNumber,
+                  style: _dropdownItemTextStyle,
+                ),
+              ),
+              Text(
+                item.name,
+                style: _dropdownItemTextStyle,
+              )
+            ],
+          ),
+          Row(
+            children: [
+              const SizedBox(
+                width: 50.0,
+              ),
+              Text(
+                'Batch No - 00102',
+                style: _dropdownItemSubTextStyle,
+              ),
+              const SizedBox(
+                width: 40.0,
+              ),
+              Text(
+                'Price - Rs.128.50',
+                style: _dropdownItemSubTextStyle,
+              ),
+            ],
+          ),
+          const Divider(),
+        ],
+      ),
+    );
   }
 }
