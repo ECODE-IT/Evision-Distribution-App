@@ -11,13 +11,7 @@ class DefaultBackground extends StatefulWidget {
   final Widget? pageButton;
 
   const DefaultBackground(
-      {super.key,
-      this.icon,
-      this.callbackAction,
-      required this.title,
-      required this.subtitle,
-      required this.widget,
-      this.pageButton});
+      {super.key, this.icon, this.callbackAction, required this.title, required this.subtitle, required this.widget, this.pageButton});
 
   @override
   State<DefaultBackground> createState() => _DefaultBackgroundState();

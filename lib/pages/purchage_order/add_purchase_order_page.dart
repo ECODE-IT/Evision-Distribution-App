@@ -80,7 +80,7 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                     child: Column(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+                          padding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
                           child: Column(
                             children: [
                               Row(
@@ -328,7 +328,7 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                                         onChanged: (GrnModel? value) {
                                           setState(() {
                                             productsToAdd.add(value!);
-                                            _selectedGrn = value!;
+                                            _selectedGrn = value;
                                           });
                                         },
                                       ),
