@@ -1,3 +1,4 @@
+import 'package:evision_distribution_app/size_helpers.dart';
 import 'package:flutter/material.dart';
 
 import 'app_bar.dart';
@@ -21,28 +22,33 @@ class _DefaultBackgroundState extends State<DefaultBackground> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: Column(
-          children: [
-            CustomizedAppBar(
-              icon: widget.icon,
-              callbackAction: widget.callbackAction,
-              title: widget.title,
-              subTitle: widget.subtitle,
+      child: SingleChildScrollView(
+        child: SizedBox(
+          height: displayHeight(context),
+          child: Scaffold(
+            resizeToAvoidBottomInset: false,
+            body: Column(
+              children: [
+                CustomizedAppBar(
+                  icon: widget.icon,
+                  callbackAction: widget.callbackAction,
+                  title: widget.title,
+                  subTitle: widget.subtitle,
+                ),
+                Container(
+                  child: widget.widget,
+                ),
+                const SizedBox(height: 25.0),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Padding(
+                    padding: EdgeInsets.only(right: 20.0),
+                    child: widget.pageButton ?? const SizedBox(),
+                  ),
+                )
+              ],
             ),
-            Container(
-              child: widget.widget,
-            ),
-            const SizedBox(height: 25.0),
-            Align(
-              alignment: Alignment.centerRight,
-              child: Padding(
-                padding: EdgeInsets.only(right: 20.0),
-                child: widget.pageButton ?? const SizedBox(),
-              ),
-            )
-          ],
+          ),
         ),
       ),
     );
