@@ -662,7 +662,7 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                                   borderRadius: BorderRadius.circular(32),
                                 ),
                                 child: DropdownSearch<GrnModel>(
-                                  popupProps: PopupProps.bottomSheet(
+                                  popupProps: PopupProps.modalBottomSheet(
                                     // showSelectedItems: true,
                                     itemBuilder: _dropdownListItem,
                                     showSearchBox: true,
