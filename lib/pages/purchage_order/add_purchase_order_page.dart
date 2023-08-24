@@ -2,7 +2,9 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:evision_distribution_app/app_theme.dart';
 import 'package:evision_distribution_app/components/app_button.dart';
 import 'package:evision_distribution_app/components/default_background.dart';
+import 'package:evision_distribution_app/components/display_message_dialog.dart';
 import 'package:evision_distribution_app/components/dropdown_widget.dart';
+import 'package:evision_distribution_app/controllers/purchase_order_controller.dart';
 import 'package:evision_distribution_app/data.dart';
 import 'package:evision_distribution_app/models/grn_model.dart';
 import 'package:evision_distribution_app/size_helpers.dart';
@@ -17,11 +19,11 @@ class AddPurchaseOrderPage extends StatefulWidget {
 
 class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
   final TextEditingController _poNumberController = TextEditingController();
+  final TextEditingController _qtyController = TextEditingController();
   String dropdownValue = list.first;
   GrnModel? dropdownValueOfProducts;
   bool isChecked = false;
   GrnModel? _selectedGrn;
-  List<GrnModel> productsToAdd = [];
 
   final TextStyle _iconLeterTextStyle = AppTheme.appButtonDisplayTextStyle.copyWith(fontSize: 12.0);
 
@@ -245,6 +247,7 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                               height: 19.0,
                               child: TextField(
                                 textAlign: TextAlign.left,
+                                cursorHeight: 12.0,
                                 onChanged: (value) {
                                   setState(() {
                                     // _searchString = value;
@@ -263,6 +266,12 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: const BorderSide(
                                       color: Color(0xffC9C5C5),
+                                    ),
+                                    borderRadius: BorderRadius.circular(32.0),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: const BorderSide(
+                                      color: Colors.green,
                                     ),
                                     borderRadius: BorderRadius.circular(32.0),
                                   ),
@@ -327,7 +336,6 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                                         ),
                                         onChanged: (GrnModel? value) {
                                           setState(() {
-                                            productsToAdd.add(value!);
                                             _selectedGrn = value;
                                           });
                                         },
@@ -346,11 +354,10 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                                         ),
                                         const SizedBox(width: 5.0),
                                         SizedBox(
-                                          width: displayWidth(context) * 0.13,
+                                          width: displayWidth(context) * 0.18,
                                           child: TextField(
-                                            decoration: AppTheme.mainTextInputDecoration.copyWith(
-                                              contentPadding: const EdgeInsets.fromLTRB(20, 1, 20, 1),
-                                            ),
+                                            controller: _qtyController,
+                                            decoration: AppTheme.mainTextInputDecoration,
                                             style: AppTheme.mainTextInputStyle,
                                           ),
                                         )
@@ -363,11 +370,11 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                               Divider(
                                 color: Colors.grey[300],
                               ),
-                              productsToAdd.isNotEmpty
+                              PurchaseOrderController.productsToAdd.isNotEmpty
                                   ? SizedBox(
                                       height: displayHeight(context) * 0.15,
                                       child: ListView.builder(
-                                          itemCount: productsToAdd.length,
+                                          itemCount: PurchaseOrderController.productsToAdd.length,
                                           itemBuilder: (context, index) {
                                             return Column(
                                               children: [
@@ -379,7 +386,7 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                                                       CircleAvatar(
                                                         backgroundColor: const Color(0xffF2F2F2),
                                                         child: Text(
-                                                          productsToAdd[index].serialNumber[0],
+                                                          PurchaseOrderController.productsToAdd[index].serialNumber[0],
                                                           style: _iconLeterTextStyle,
                                                         ),
                                                       ),
@@ -387,7 +394,7 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                                                       SizedBox(
                                                         width: 54.0,
                                                         child: Text(
-                                                          productsToAdd[index].serialNumber,
+                                                          PurchaseOrderController.productsToAdd[index].serialNumber,
                                                           style: _dropdownItemTextStyle.copyWith(fontSize: 12.0),
                                                         ),
                                                       ),
@@ -408,7 +415,7 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                                                             child: FittedBox(
                                                               fit: BoxFit.cover,
                                                               child: Text(
-                                                                productsToAdd[index].name,
+                                                                PurchaseOrderController.productsToAdd[index].name,
                                                                 style: _dropdownItemTextStyle.copyWith(fontSize: 12.0),
                                                                 textAlign: TextAlign.start,
                                                               ),
@@ -480,7 +487,7 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                                                               Row(
                                                                 children: [
                                                                   const Text(
-                                                                    'QTY',
+                                                                    'QTY:',
                                                                     style: TextStyle(
                                                                       fontSize: 8.0,
                                                                       fontFamily: 'Lato',
@@ -491,10 +498,8 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                                                                   const SizedBox(width: 5.0),
                                                                   SizedBox(
                                                                     width: 35.0,
-                                                                    child: TextField(
-                                                                      decoration: AppTheme.mainTextInputDecoration.copyWith(
-                                                                        contentPadding: const EdgeInsets.fromLTRB(20, 1, 20, 1),
-                                                                      ),
+                                                                    child: Text(
+                                                                      PurchaseOrderController.productsToAdd[index].qty.toString(),
                                                                       style: AppTheme.mainTextInputStyle,
                                                                     ),
                                                                   )
@@ -523,14 +528,52 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
                     ),
                   ),
                   const SizedBox(height: 5.0),
-                  const Padding(
-                    padding: EdgeInsets.only(right: 10.0),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10.0),
                     child: Align(
                       alignment: Alignment.centerRight,
-                      child: AppButton(
-                        displayText: 'Add Product',
+                      child: SizedBox(
                         height: 30.0,
-                        width: mainAppButtonWidth,
+                        child: FilledButton(
+                          style: AppTheme.appButtonStyle,
+                          onPressed: () {
+                            if (_qtyController.text.isEmpty) {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return const DisplayMessageDialog(
+                                    iconName: Icons.error_outline,
+                                    message: 'Enter the quantity',
+                                    displayAction: true,
+                                  );
+                                },
+                              );
+                            } else {
+                              if (PurchaseOrderController.checkWhetherExists(_selectedGrn) == true) {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return const DisplayMessageDialog(
+                                      iconName: Icons.error_outline,
+                                      message: 'Product already added.',
+                                      displayAction: true,
+                                    );
+                                  },
+                                );
+                              } else {
+                                setState(() {
+                                  PurchaseOrderController.productsToAdd.add(_selectedGrn!);
+                                  _selectedGrn = null;
+                                  _qtyController.clear();
+                                });
+                              }
+                            }
+                          },
+                          child: Text(
+                            'Add Product',
+                            style: AppTheme.appButtonDisplayTextStyle,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -584,6 +627,19 @@ class _AddPurchaseOrderPageState extends State<AddPurchaseOrderPage> {
           const Divider(),
         ],
       ),
+    );
+  }
+
+  displayMessage() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const DisplayMessageDialog(
+          iconName: Icons.error_outline,
+          message: 'Enter the quantity',
+          displayAction: true,
+        );
+      },
     );
   }
 }
