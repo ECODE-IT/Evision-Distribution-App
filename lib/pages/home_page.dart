@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
               AppHomeGridTile(
                 icon: Icons.airport_shuttle,
                 tileName: 'Loading',
-                route: '',
+                route: '/loading_list',
               ),
               AppHomeGridTile(
                 icon: Icons.airport_shuttle,

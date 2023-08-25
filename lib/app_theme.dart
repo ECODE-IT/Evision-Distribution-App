@@ -17,19 +17,15 @@ const double tertiaryAppButtonWidth = 234.0;
 
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
-    colorScheme:
-        ColorScheme.fromSeed(seedColor: primaryColor, primary: primaryColor),
+    colorScheme: ColorScheme.fromSeed(seedColor: primaryColor, primary: primaryColor),
     textTheme: GoogleFonts.latoTextTheme(),
     scaffoldBackgroundColor: scaffoldBackgroundColor,
     useMaterial3: true,
   );
 
-  static TextStyle titleStyle =
-      const TextStyle(fontWeight: FontWeight.w900, fontSize: 17);
-  static TextStyle subtitleStyle =
-      const TextStyle(fontSize: 10, color: Color(0xFF797979));
-  static TextStyle secondaryTextStyle =
-      const TextStyle(fontWeight: FontWeight.w700, fontFamily: 'Lato');
+  static TextStyle titleStyle = const TextStyle(fontWeight: FontWeight.w900, fontSize: 17);
+  static TextStyle subtitleStyle = const TextStyle(fontSize: 10, color: Color(0xFF797979));
+  static TextStyle secondaryTextStyle = const TextStyle(fontWeight: FontWeight.w700, fontFamily: 'Lato');
 
   static BoxDecoration customizedCardDecoration = BoxDecoration(
     color: Colors.white,
@@ -63,8 +59,16 @@ class AppTheme {
     ),
   );
 
-  static TextStyle appButtonDisplayTextStyle =
-      const TextStyle(fontWeight: FontWeight.w700, fontFamily: 'Lato');
+  static TextStyle appButtonDisplayTextStyle = const TextStyle(
+    fontWeight: FontWeight.w700,
+    fontFamily: 'Lato',
+  );
+
+  static TextStyle secondaryButtonDisplayTextStyle = const TextStyle(
+    fontWeight: FontWeight.w700,
+    fontFamily: 'Lato',
+    color: Color(0xff1ED291),
+  );
 
   static InputDecoration mainTextInputDecoration = InputDecoration(
     contentPadding: const EdgeInsets.fromLTRB(20, 3, 20, 3),

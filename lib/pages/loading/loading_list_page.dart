@@ -5,8 +5,8 @@ import 'package:evision_distribution_app/components/third_app_component_widget.d
 import 'package:evision_distribution_app/data.dart';
 import 'package:flutter/material.dart';
 
-class PurchaseOrderPage extends StatelessWidget {
-  const PurchaseOrderPage({Key? key}) : super(key: key);
+class LoadingListPage extends StatelessWidget {
+  const LoadingListPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class PurchaseOrderPage extends StatelessWidget {
       title: 'John Keels Company',
       subtitle: 'Distributor Code : D569',
       widget: ThirdAppComponentWidget(
-        title: 'GRN',
+        title: 'Loading Invoice',
         content: Container(
           decoration: AppTheme.containerBoxDecoration,
           child: ListView.builder(
@@ -61,7 +61,11 @@ class PurchaseOrderPage extends StatelessWidget {
             },
           ),
         ),
-        topButton: const AppButton(displayText: 'Add PO', height: 27.0, route: '/add_purchase_order',),
+        topButton: const AppButton(
+          displayText: 'Add Loading',
+          height: 27.0,
+          route: '/add_loading',
+        ),
       ),
     );
   }
