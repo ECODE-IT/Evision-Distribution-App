@@ -7,15 +7,19 @@ import '../app_theme.dart';
 class AppHomeGridTile extends StatelessWidget {
   final IconData icon;
   final String tileName;
+  final String route;
 
   const AppHomeGridTile(
-      {required this.icon, required this.tileName, super.key});
+      {required this.icon, required this.tileName, required this.route, super.key});
 
   @override
   Widget build(BuildContext context) {
     double tileSize = (displayWidth(context) - 115) / 3;
 
     return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, route);
+      },
       child: Column(
         children: [
           GridTile(

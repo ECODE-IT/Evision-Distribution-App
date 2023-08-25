@@ -28,6 +28,8 @@ class AppTheme {
       const TextStyle(fontWeight: FontWeight.w900, fontSize: 17);
   static TextStyle subtitleStyle =
       const TextStyle(fontSize: 10, color: Color(0xFF797979));
+  static TextStyle secondaryTextStyle =
+      const TextStyle(fontWeight: FontWeight.w700, fontFamily: 'Lato');
 
   static BoxDecoration customizedCardDecoration = BoxDecoration(
     color: Colors.white,
@@ -60,6 +62,9 @@ class AppTheme {
       borderRadius: BorderRadius.circular(5),
     ),
   );
+
+  static TextStyle appButtonDisplayTextStyle =
+      const TextStyle(fontWeight: FontWeight.w700, fontFamily: 'Lato');
 
   static InputDecoration mainTextInputDecoration = InputDecoration(
     contentPadding: const EdgeInsets.fromLTRB(20, 3, 20, 3),

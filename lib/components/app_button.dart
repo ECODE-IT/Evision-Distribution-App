@@ -4,25 +4,33 @@ import 'package:flutter/material.dart';
 class AppButton extends StatelessWidget {
   final String? route;
   final String displayText;
+  final TextStyle? displayTextStyle;
   final double height;
   final double? width;
   final VoidCallback? voidCallback;
   final Color? color;
   final IconData? icon;
+  final Object? arguments;
 
-  const AppButton(
-      {this.route,
-      required this.displayText,
-      required this.height,
-      this.width,
-      this.voidCallback,
-      this.color,
-      this.icon,
-      Key? key})
+  const AppButton({this.route,
+    required this.displayText,
+    this.displayTextStyle,
+    required this.height,
+    this.width,
+    this.voidCallback,
+    this.color,
+    this.icon,
+    this.arguments,
+    Key? key})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var iconText = Text(
+      displayText,
+      style: displayTextStyle ?? AppTheme.appButtonDisplayTextStyle,
+    );
+
     return SizedBox(
       height: height,
       width: width,
@@ -30,30 +38,20 @@ class AppButton extends StatelessWidget {
         style: color == null
             ? AppTheme.appButtonStyle
             : AppTheme.appButtonStyle.copyWith(
-                backgroundColor: MaterialStatePropertyAll(color),
-              ),
+          backgroundColor: MaterialStatePropertyAll(color),
+        ),
         onPressed: () {
           if (route != null) {
-            Navigator.pushNamed(context, route!);
+            Navigator.of(context).pushNamed(route!, arguments: arguments);
           }
           voidCallback;
         },
         child: icon == null
-            ? Text(
-                displayText,
-                style: const TextStyle(fontWeight: FontWeight.w700),
-              )
+            ? iconText
             : Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(icon),
-                  const SizedBox(width: 10.0),
-                  Text(
-                    displayText,
-                    style: const TextStyle(fontWeight: FontWeight.w700),
-                  )
-                ],
-              ),
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [Icon(icon), const SizedBox(width: 10.0), iconText],
+        ),
       ),
     );
   }

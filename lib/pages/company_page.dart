@@ -6,8 +6,12 @@ class CompanyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const DefaultBackground(title: 'Company', subtitle: 'John Keells', widget: Center(child: Text('company page'),),);
+    return const DefaultBackground(
+      title: 'Company',
+      subtitle: 'John Keells',
+      widget: Center(
+        child: Text('company page'),
+      ),
+    );
   }
 }
-
-

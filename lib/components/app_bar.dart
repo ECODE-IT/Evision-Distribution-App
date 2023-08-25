@@ -3,9 +3,17 @@ import 'package:flutter/material.dart';
 
 class CustomizedAppBar extends StatelessWidget {
   const CustomizedAppBar(
-      {super.key, required this.title, required this.subTitle});
+      {super.key,
+      this.icon,
+      this.callbackAction,
+      required this.title,
+      required this.subTitle});
+
   final String title;
   final String subTitle;
+  final IconData? icon;
+  final CallbackAction? callbackAction;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -19,13 +27,21 @@ class CustomizedAppBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Visibility(
-                visible: Navigator.of(context).canPop(),
-                child: InkWell(
-                  child: const Icon(Icons.arrow_back_rounded),
-                  onTap: () => {Navigator.pop(context)},
-                ),
-              ),
+              icon == null
+                  ? Visibility(
+                      visible: Navigator.of(context).canPop() && icon == null,
+                      child: InkWell(
+                        child: const Icon(Icons.arrow_back_rounded),
+                        onTap: () => {Navigator.pop(context)},
+                      ),
+                    )
+                  : Visibility(
+                      visible: icon != null,
+                      child: InkWell(
+                        child: Icon(icon),
+                        onTap: () => {callbackAction ?? Navigator.pop(context)},
+                      ),
+                    ),
               Row(
                 children: [
                   Column(
