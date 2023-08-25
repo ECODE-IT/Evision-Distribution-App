@@ -331,6 +331,7 @@ class _AddUnloadingPageState extends State<AddUnloadingPage> {
                                   )
                                 ],
                               ),
+                              const SizedBox(height: 5.0),
                               grn.expanded == true
                                   ? Container(
                                       height: 31.0,

@@ -30,7 +30,7 @@ class ThirdAppComponentWidget extends StatelessWidget {
                       SizedBox(
                         width: 200.0,
                         child: FittedBox(
-                          fit: BoxFit.contain,
+                          fit: BoxFit.scaleDown,
                           child: Text(
                             title,
                             style: const TextStyle(
