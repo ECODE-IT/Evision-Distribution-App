@@ -1,5 +1,7 @@
 import 'package:evision_distribution_app/models/po_model.dart';
-import 'package:evision_distribution_app/pages/purchage_order/add_purchase_order_page.dart';
+import 'package:evision_distribution_app/pages/loading/add_loading_page.dart';
+import 'package:evision_distribution_app/pages/loading/loading_list_page.dart';
+import 'package:evision_distribution_app/pages/purchase_order/add_purchase_order_page.dart';
 import 'package:evision_distribution_app/pages/company_configuration_page.dart';
 import 'package:evision_distribution_app/pages/company_page.dart';
 import 'package:evision_distribution_app/pages/dashboard_page.dart';
@@ -8,10 +10,12 @@ import 'package:evision_distribution_app/pages/grn_page.dart';
 import 'package:evision_distribution_app/pages/home_page.dart';
 import 'package:evision_distribution_app/pages/login_page.dart';
 import 'package:evision_distribution_app/pages/pending_po_page.dart';
-import 'package:evision_distribution_app/pages/purchage_order/purchase_order_page.dart';
+import 'package:evision_distribution_app/pages/purchase_order/purchase_orders_list_page.dart';
 import 'package:evision_distribution_app/pages/select_company_page.dart';
 import 'package:evision_distribution_app/pages/settings_page.dart';
 import 'package:evision_distribution_app/pages/start_cofiguration_page.dart';
+import 'package:evision_distribution_app/pages/unloading/add_unloading_page.dart';
+import 'package:evision_distribution_app/pages/unloading/unloading_list_page.dart';
 import 'package:flutter/material.dart';
 
 class RouteGenerator {
@@ -26,17 +30,24 @@ class RouteGenerator {
       case '/company':
         return MaterialPageRoute(builder: (_) => const CompanyPage());
       case '/purchase_order':
-        return MaterialPageRoute(builder: (_) => const PurchaseOrderPage());
+        return MaterialPageRoute(builder: (_) => const PurchaseOrdersListPage());
+
       case '/add_purchase_order':
         return MaterialPageRoute(builder: (_) => const AddPurchaseOrderPage());
+      case '/loading_list':
+        return MaterialPageRoute(builder: (_) => const LoadingListPage());
+      case '/add_loading':
+        return MaterialPageRoute(builder: (_) => const AddLoadingPage());
+      case '/unloading_list':
+        return MaterialPageRoute(builder: (_) => const UnLoadingListPage());
+      case '/add_unloading':
+        return MaterialPageRoute(builder: (_) => const AddUnloadingPage());
       case '/company_configuration':
-        return MaterialPageRoute(
-            builder: (_) => const CompanyConfigurationPage());
+        return MaterialPageRoute(builder: (_) => const CompanyConfigurationPage());
       case '/home':
         return MaterialPageRoute(builder: (_) => const HomePage());
       case '/start_configuration':
-        return MaterialPageRoute(
-            builder: (_) => const StartConfigurationPage());
+        return MaterialPageRoute(builder: (_) => const StartConfigurationPage());
       case '/dashboard':
         return MaterialPageRoute(builder: (_) => const DashboardPage());
       case '/settings':

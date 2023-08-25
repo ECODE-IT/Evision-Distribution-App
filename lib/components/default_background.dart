@@ -10,9 +10,17 @@ class DefaultBackground extends StatefulWidget {
   final Widget widget;
   final CallbackAction? callbackAction;
   final Widget? pageButton;
+  final Widget? secondaryButton;
 
   const DefaultBackground(
-      {super.key, this.icon, this.callbackAction, required this.title, required this.subtitle, required this.widget, this.pageButton});
+      {super.key,
+      this.icon,
+      this.callbackAction,
+      required this.title,
+      required this.subtitle,
+      required this.widget,
+      this.pageButton,
+      this.secondaryButton});
 
   @override
   State<DefaultBackground> createState() => _DefaultBackgroundState();
@@ -39,12 +47,16 @@ class _DefaultBackgroundState extends State<DefaultBackground> {
                   child: widget.widget,
                 ),
                 const SizedBox(height: 25.0),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Padding(
-                    padding: EdgeInsets.only(right: 20.0),
-                    child: widget.pageButton ?? const SizedBox(),
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    widget.secondaryButton ?? const SizedBox(),
+                    const SizedBox(width: 20.0),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 20.0),
+                      child: widget.pageButton ?? const SizedBox(),
+                    ),
+                  ],
                 )
               ],
             ),

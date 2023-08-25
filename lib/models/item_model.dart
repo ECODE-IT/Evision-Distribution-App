@@ -1,19 +1,19 @@
-class GrnModel {
+import 'package:flutter/material.dart';
+
+class ItemModel {
   int id;
   String serialNumber;
   String name;
-  int qty;
+  TextEditingController qty;
   double price;
   bool expanded;
-  bool added;
 
-  GrnModel(
+  ItemModel(
     this.id,
     this.serialNumber,
     this.name,
     this.qty,
     this.price,
     this.expanded,
-    this.added,
   );
 }

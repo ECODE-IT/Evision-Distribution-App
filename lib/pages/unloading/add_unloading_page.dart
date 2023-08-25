@@ -2,33 +2,24 @@ import 'package:evision_distribution_app/app_theme.dart';
 import 'package:evision_distribution_app/components/app_button.dart';
 import 'package:evision_distribution_app/components/center_content_card.dart';
 import 'package:evision_distribution_app/components/default_background.dart';
+import 'package:evision_distribution_app/components/dropdown_widget.dart';
 import 'package:evision_distribution_app/data.dart';
-import 'package:evision_distribution_app/models/po_model.dart';
 import 'package:evision_distribution_app/size_helpers.dart';
 import 'package:flutter/material.dart';
 
-class GrnPage extends StatefulWidget {
-  static const routeName = '/grn';
-  final PoModel data;
-
-  const GrnPage({required this.data, Key? key}) : super(key: key);
+class AddUnloadingPage extends StatefulWidget {
+  const AddUnloadingPage({Key? key}) : super(key: key);
 
   @override
-  State<GrnPage> createState() => _GrnPageState();
+  State<AddUnloadingPage> createState() => _AddUnloadingPageState();
 }
 
 TextStyle _listItemTextStyle = AppTheme.secondaryTextStyle.copyWith(color: const Color(0xff5A5A5A));
 TextStyle _expandedListItemTextStyle = const TextStyle(fontSize: 8.0, fontWeight: FontWeight.w500, color: secondaryTextColor);
 
-class _GrnPageState extends State<GrnPage> {
+class _AddUnloadingPageState extends State<AddUnloadingPage> {
   final TextEditingController _poNumberController = TextEditingController();
   String dropdownValue = list.first;
-
-  @override
-  void initState() {
-    _poNumberController.text = widget.data.poName!;
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +27,7 @@ class _GrnPageState extends State<GrnPage> {
       title: "John Keells Company",
       subtitle: "Distributor Code : D569",
       widget: CenterContentCard(
-        title: 'GRN',
+        title: 'Unloading',
         content: Column(
           children: [
             Container(
@@ -51,24 +42,25 @@ class _GrnPageState extends State<GrnPage> {
                       children: [
                         Row(
                           children: [
-                            const Text(
-                              'PO Number',
-                              style: TextStyle(fontSize: 10.0, color: Color(0xff797979)),
+                            const SizedBox(
+                              width: 80.0,
+                              child: Text(
+                                'Loading Number',
+                                style: TextStyle(fontSize: 10.0, color: Color(0xff797979)),
+                              ),
                             ),
                             const SizedBox(width: 20.0),
                             SizedBox(
                               width: displayWidth(context) * 0.5,
-                              child: Theme(
-                                data: ThemeData(disabledColor: const Color(0xff727272)),
-                                child: TextField(
-                                  enabled: false,
-                                  controller: _poNumberController,
-                                  decoration: AppTheme.mainTextInputDecoration,
-                                  style: const TextStyle(
-                                    fontSize: 10.0,
-                                    fontWeight: FontWeight.w700,
-                                    fontFamily: 'Lato',
-                                  ),
+                              child: TextField(
+                                controller: _poNumberController,
+                                decoration: AppTheme.mainTextInputDecoration.copyWith(
+                                  contentPadding: const EdgeInsets.fromLTRB(20, 5, 20, 3),
+                                ),
+                                style: const TextStyle(
+                                  fontSize: 10.0,
+                                  fontWeight: FontWeight.w700,
+                                  fontFamily: 'Lato',
                                 ),
                               ),
                             )
@@ -77,9 +69,12 @@ class _GrnPageState extends State<GrnPage> {
                         const SizedBox(height: 15.0),
                         Row(
                           children: [
-                            const Text(
-                              'Other fields',
-                              style: TextStyle(fontSize: 10.0, color: Color(0xff797979)),
+                            const SizedBox(
+                              width: 80.0,
+                              child: Text(
+                                'Source Lct',
+                                style: TextStyle(fontSize: 10.0, color: Color(0xff797979)),
+                              ),
                             ),
                             const SizedBox(width: 20.0),
                             Container(
@@ -88,7 +83,60 @@ class _GrnPageState extends State<GrnPage> {
                               height: 24.0,
                               decoration: BoxDecoration(
                                 border: Border.all(
-                                  color: Colors.grey[300]!,
+                                  color: Colors.grey[400]!,
+                                ),
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton<String>(
+                                  value: dropdownValue,
+                                  isExpanded: true,
+                                  icon: const Icon(Icons.keyboard_arrow_down),
+                                  elevation: 16,
+                                  onChanged: (String? value) {
+                                    setState(() {
+                                      dropdownValue = value!;
+                                    });
+                                  },
+                                  items: list.map<DropdownMenuItem<String>>((String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Center(
+                                        child: Text(
+                                          value,
+                                          style: const TextStyle(
+                                            fontSize: 12.0,
+                                            fontWeight: FontWeight.w700,
+                                            fontFamily: 'Lato',
+                                            color: Color(0xff797979),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 15.0),
+                        Row(
+                          children: [
+                            const SizedBox(
+                              width: 80.0,
+                              child: Text(
+                                'Destination Lct',
+                                style: TextStyle(fontSize: 10.0, color: Color(0xff797979)),
+                              ),
+                            ),
+                            const SizedBox(width: 20.0),
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                              width: displayWidth(context) * 0.5,
+                              height: 24.0,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Colors.grey[400]!,
                                 ),
                                 borderRadius: BorderRadius.circular(5),
                               ),
@@ -130,54 +178,90 @@ class _GrnPageState extends State<GrnPage> {
                   Container(
                     color: const Color(0xffF7F7F7),
                     padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 3.0),
-                    child: Row(
+                    child: const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
+                        Text(
                           'Item List',
                           style: TextStyle(fontSize: 11.0, color: secondaryTextColor, fontFamily: 'Lato', fontWeight: FontWeight.w700),
-                        ),
-                        SizedBox(
-                          width: displayWidth(context) * 0.35,
-                          height: 19.0,
-                          child: TextField(
-                            textAlign: TextAlign.left,
-                            onChanged: (value) {
-                              setState(() {
-                                // _searchString = value;
-                              });
-                            },
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Colors.white,
-                              hintText: 'Search Product',
-                              isDense: true,
-                              contentPadding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-                              hintStyle: const TextStyle(
-                                color: Color(0xffBFBCBC),
-                                fontSize: 12.0,
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: Color(0xffC9C5C5),
-                                ),
-                                borderRadius: BorderRadius.circular(2.0),
-                              ),
-                              suffixIcon: IconButton(
-                                padding: EdgeInsets.zero,
-                                icon: const Icon(
-                                  Icons.search,
-                                  color: Colors.grey,
-                                  size: 10.0,
-                                ),
-                                onPressed: () => {},
-                              ),
-                            ),
-                          ),
                         ),
                       ],
                     ),
                   ),
+                  const SizedBox(height: 10.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      DropdownWidget(
+                        width: displayWidth(context) * 0.22,
+                        height: 19.0,
+                        backgroundColor: const Color(0xffE4E4E4),
+                        dropdownValue: dropdownValue,
+                        function: (String? value) {
+                          setState(() {
+                            dropdownValue = value!;
+                          });
+                        },
+                      ),
+                      DropdownWidget(
+                        width: displayWidth(context) * 0.22,
+                        height: 19.0,
+                        backgroundColor: const Color(0xffE4E4E4),
+                        dropdownValue: dropdownValue,
+                        function: (String? value) {
+                          setState(() {
+                            dropdownValue = value!;
+                          });
+                        },
+                      ),
+                      SizedBox(
+                        width: displayWidth(context) * 0.35,
+                        height: 19.0,
+                        child: TextField(
+                          textAlign: TextAlign.left,
+                          cursorHeight: 12.0,
+                          onChanged: (value) {
+                            setState(() {
+                              // _searchString = value;
+                            });
+                          },
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            hintText: 'Search Product',
+                            isDense: true,
+                            contentPadding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+                            hintStyle: const TextStyle(
+                              color: Color(0xffBFBCBC),
+                              fontSize: 12.0,
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                color: Color(0xffC9C5C5),
+                              ),
+                              borderRadius: BorderRadius.circular(32.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                color: Colors.green,
+                              ),
+                              borderRadius: BorderRadius.circular(32.0),
+                            ),
+                            suffixIcon: IconButton(
+                              padding: EdgeInsets.zero,
+                              icon: const Icon(
+                                Icons.search,
+                                color: Colors.grey,
+                                size: 12.0,
+                              ),
+                              onPressed: () => {},
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 5.0),
                   Divider(color: Colors.grey[300]),
                   Expanded(
                     child: ListView.builder(
@@ -374,7 +458,7 @@ class _GrnPageState extends State<GrnPage> {
         ),
       ),
       pageButton: const AppButton(
-        displayText: 'Approve',
+        displayText: 'ADD Unloading',
         height: mainAppButtonHeight,
         width: 170.0,
       ),
