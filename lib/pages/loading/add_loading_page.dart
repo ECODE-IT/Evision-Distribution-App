@@ -1,6 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-// TODO
-
 import 'package:evision_distribution_app/app_theme.dart';
 import 'package:evision_distribution_app/components/app_button.dart';
 import 'package:evision_distribution_app/components/center_content_card.dart';
@@ -45,9 +42,9 @@ class _AddLoadingPageState extends State<AddLoadingPage> {
                       children: [
                         Row(
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               width: 80.0,
-                              child: const Text(
+                              child: Text(
                                 'Loading Number',
                                 style: TextStyle(fontSize: 10.0, color: Color(0xff797979)),
                               ),
@@ -72,9 +69,9 @@ class _AddLoadingPageState extends State<AddLoadingPage> {
                         const SizedBox(height: 15.0),
                         Row(
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               width: 80.0,
-                              child: const Text(
+                              child: Text(
                                 'Source Lct',
                                 style: TextStyle(fontSize: 10.0, color: Color(0xff797979)),
                               ),
@@ -125,9 +122,9 @@ class _AddLoadingPageState extends State<AddLoadingPage> {
                         const SizedBox(height: 15.0),
                         Row(
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               width: 80.0,
-                              child: const Text(
+                              child: Text(
                                 'Destination Lct',
                                 style: TextStyle(fontSize: 10.0, color: Color(0xff797979)),
                               ),
@@ -192,7 +189,7 @@ class _AddLoadingPageState extends State<AddLoadingPage> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 10.0),
+                  const SizedBox(height: 10.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -265,7 +262,7 @@ class _AddLoadingPageState extends State<AddLoadingPage> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 5.0),
+                  const SizedBox(height: 5.0),
                   Divider(color: Colors.grey[300]),
                   Expanded(
                     child: ListView.builder(
@@ -288,7 +285,7 @@ class _AddLoadingPageState extends State<AddLoadingPage> {
                                                 item.serialNumber[0],
                                                 style: _listItemTextStyle.copyWith(fontSize: 12.0),
                                               )
-                                            : Icon(
+                                            : const Icon(
                                                 Icons.check_circle,
                                                 color: Color(0xff1ED291),
                                               ),
@@ -336,7 +333,7 @@ class _AddLoadingPageState extends State<AddLoadingPage> {
                                   ),
                                   Row(
                                     children: [
-                                      Text(
+                                      const Text(
                                         'QTY',
                                         style: TextStyle(
                                           fontFamily: 'Lato',
