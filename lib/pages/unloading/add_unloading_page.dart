@@ -277,13 +277,25 @@ class _AddUnloadingPageState extends State<AddUnloadingPage> {
                                 children: [
                                   Row(
                                     children: [
-                                      CircleAvatar(
-                                        backgroundColor: const Color(0xffF2F2F2),
-                                        child: Text(
-                                          '0${grn.id}',
-                                          style: _listItemTextStyle.copyWith(fontSize: 12.0),
-                                        ),
-                                      ),
+                                      grn.added == true
+                                          ? CircleAvatar(
+                                              backgroundColor: const Color(0xffD21E1E),
+                                              child: CircleAvatar(
+                                                radius: 18.0,
+                                                backgroundColor: const Color(0xffF2F2F2),
+                                                child: Text(
+                                                  '0${grn.id}',
+                                                  style: _listItemTextStyle.copyWith(fontSize: 12.0),
+                                                ),
+                                              ),
+                                            )
+                                          : CircleAvatar(
+                                              backgroundColor: const Color(0xffF2F2F2),
+                                              child: Text(
+                                                '0${grn.id}',
+                                                style: _listItemTextStyle.copyWith(fontSize: 12.0),
+                                              ),
+                                            ),
                                       const SizedBox(width: 10.0),
                                       Text(
                                         grn.serialNumber,
@@ -316,6 +328,9 @@ class _AddUnloadingPageState extends State<AddUnloadingPage> {
                                         onTap: () {
                                           setState(() {
                                             grn.expanded = !grn.expanded;
+                                            if (grn.expanded == false) {
+                                              grn.added = true;
+                                            }
                                           });
                                         },
                                         child: SizedBox(

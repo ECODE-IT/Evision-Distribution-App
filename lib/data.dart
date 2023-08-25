@@ -17,10 +17,10 @@ List<PoModel> poList = [
 ];
 
 List<GrnModel> grnList = [
-  GrnModel(01, 'CDS0023', 'Elephanthouse necto 300ml', 8, 128.50, false),
-  GrnModel(02, 'CDS0074', 'Elephanthouse Cream soda 1L', 24, 128.50, false),
-  GrnModel(04, 'CDS0023', 'Elephanthouse Wonder Bar  Ice cream', 8, 128.50, false),
-  GrnModel(03, 'CDS0041', 'Elephanthouse Sausage 675g', 8, 128.50, false),
+  GrnModel(01, 'CDS0023', 'Elephanthouse necto 300ml', 8, 128.50, false, false),
+  GrnModel(02, 'CDS0074', 'Elephanthouse Cream soda 1L', 24, 128.50, false, false),
+  GrnModel(04, 'CDS0023', 'Elephanthouse Wonder Bar  Ice cream', 8, 128.50, false, false),
+  GrnModel(03, 'CDS0041', 'Elephanthouse Sausage 675g', 8, 128.50, false, false),
 ];
 
 List<ItemModel> itemList = [
