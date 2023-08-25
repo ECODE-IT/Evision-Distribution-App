@@ -14,6 +14,8 @@ import 'package:evision_distribution_app/pages/purchase_order/purchase_orders_li
 import 'package:evision_distribution_app/pages/select_company_page.dart';
 import 'package:evision_distribution_app/pages/settings_page.dart';
 import 'package:evision_distribution_app/pages/start_cofiguration_page.dart';
+import 'package:evision_distribution_app/pages/unloading/add_unloading_page.dart';
+import 'package:evision_distribution_app/pages/unloading/unloading_list_page.dart';
 import 'package:flutter/material.dart';
 
 class RouteGenerator {
@@ -36,6 +38,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const LoadingListPage());
       case '/add_loading':
         return MaterialPageRoute(builder: (_) => const AddLoadingPage());
+      case '/unloading_list':
+        return MaterialPageRoute(builder: (_) => const UnLoadingListPage());
+      case '/add_unloading':
+        return MaterialPageRoute(builder: (_) => const AddUnloadingPage());
       case '/company_configuration':
         return MaterialPageRoute(builder: (_) => const CompanyConfigurationPage());
       case '/home':

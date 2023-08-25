@@ -8,12 +8,7 @@ class ThirdAppComponentWidget extends StatelessWidget {
   final Widget? button;
   final Widget? topButton;
 
-  const ThirdAppComponentWidget(
-      {required this.title,
-      required this.content,
-      this.button,
-      this.topButton,
-      super.key});
+  const ThirdAppComponentWidget({required this.title, required this.content, this.button, this.topButton, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +27,18 @@ class ThirdAppComponentWidget extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        title,
-                        style: const TextStyle(
-                          fontSize: 29.0,
-                          color: secondaryTextColor,
-                          fontWeight: FontWeight.w700,
+                      SizedBox(
+                        width: 200.0,
+                        child: FittedBox(
+                          fit: BoxFit.contain,
+                          child: Text(
+                            title,
+                            style: const TextStyle(
+                              fontSize: 29.0,
+                              color: secondaryTextColor,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
                         ),
                       ),
                       topButton ?? const SizedBox()
